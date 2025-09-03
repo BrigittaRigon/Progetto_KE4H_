@@ -126,20 +126,17 @@ WHERE {
   FILTER (REGEX(STR(?label), "Bologna", "i"))
 }
 LIMIT 100
-
-    </pre>
-
-    <h2>SPARQL Query 2: DESCRIBE</h2>
-    <p>
+  </pre>
+  <h2>SPARQL Query 2: DESCRIBE</h2>
+   <p>
       To retrieve all RDF triples related to the monument with identifier 
       <b>0800241649</b>, a <code>DESCRIBE</code> query was executed:
-    </p>
+  </p>
     <pre>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 DESCRIBE <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241649>
 WHERE {
 }
-    
    </pre>
 
     <h2>Discussion</h2>
