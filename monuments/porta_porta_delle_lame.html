@@ -400,6 +400,60 @@ WHERE {
 
 }
 </pre>  
+<h2>Discussion</h2>
+    <p>
+    Overall Gemini provides a simpler version of the query using the hasConstituent property. 
+    </p>    
+<h2>SPARQL Query 9: SELECT</h2>
+    <p>
+   SELECT query about Porta Lame to find out if some properties exist in ArCo   
+    </p>
+    <pre> 
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX a-arch: &lt;https://w3id.org/arco/ontology/architectural-description/&gt;
+
+SELECT DISTINCT ?culturalProperty ?title
+       (BOUND(?architecturalOrder) AS ?hasArchitecturalOrder)
+       (BOUND(?constructionDevelopment) AS ?hasConstructionDevelopment)
+       (BOUND(?constructionElement) AS ?hasConstructionElement)
+       (BOUND(?constructionSpace) AS ?hasConstructionSpace)
+       (BOUND(?covering) AS ?hasCovering)
+WHERE {
+  {
+    VALUES ?culturalProperty { &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241649&gt; }
+
+    OPTIONAL { ?culturalProperty rdfs:label ?title . }
+    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
+    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
+  }
+  UNION
+  {
+    VALUES ?culturalProperty { &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800242005&gt; }
+
+    OPTIONAL { ?culturalProperty rdfs:label ?title . }
+    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
+    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
+  }
+    FILTER(REGEX(?title, "Porta", "i"))
+}
+ORDER BY ?title
+LIMIT 10
+<h2>Discussion</h2>
+    <p>
+    
+SPARQL queries complexity: the results were often wrong at first and I had to question the LLM’s several times to receive a correct answer . They also used incorrect properties or properties not from ArCo so I had to manually replace some of them and had to specify what properties I wanted to be used with their IRI’s. Large Language Models also supported me in identifying and correcting syntax issues within the queries. Deepseek was the most intuitive when faced with a problem
+
+    </p>  
     
 <h2>Conclusion</h2>
     <p>
