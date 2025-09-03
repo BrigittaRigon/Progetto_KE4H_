@@ -216,20 +216,20 @@ Gemini provided a detailed and organized step by step analysis:
       Gemini's CONSTRUCT query
    </p>
     <pre>
-      PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/construction-description&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/construction-description&gt;
 PREFIX arco-ce: &lt;https://w3id.org/arco/ontology/cultural-event&gt;
 PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core&gt;
 PREFIX arco-dd: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco&gt;
 
 CONSTRUCT {
-    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
         arco-cd:hasPreviousStructureOrElement "cassero medievale" ;
         arco-cd:hasArchitecturalOrder "baroque" ;
         arco-dd:hasMaterial "brick" ;
         arco-ce:hasRelatedEvent "battle of Porta Lame during WWII" ;
         arco-core:describes "the latin name Lame refers to swamps" ;
-        arco-core:isPartOf <https://w3id.org/arco/resource/CityGate/BolognasCityGates> ;
+        arco-core:isPartOf &lt;https://w3id.org/arco/resource/CityGate/BolognasCityGates&gt;
         arco-dd:AffixedElement "two lions" .
 }
 WHERE {
@@ -243,43 +243,43 @@ WHERE {
     <p>
       Chat gpt's CONSTRUCT query
    </p>
-    <pre> 
-      PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX a-cd:  <https://w3id.org/arco/ontology/construction-description/>
-PREFIX a-dd:  <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX a-ce:  <https://w3id.org/arco/ontology/cultural-event/>
-PREFIX a-core:<https://w3id.org/arco/ontology/core/>
+   <pre> 
+PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX a-cd:  &lt;https://w3id.org/arco/ontology/construction-description&gt;
+PREFIX a-dd:  &lt;https://w3id.org/arco/ontology/denotative-description&gt;
+PREFIX a-ce:  &lt;https://w3id.org/arco/ontology/cultural-event&gt;
+PREFIX a-core:&lt;https://w3id.org/arco/ontology/core/&gt;
 
 CONSTRUCT {
-  <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649>
-    a-cd:hasPreviousStructureOrElements <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep> ;
-    a-cd:hasArchitecturalOrder          <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque> ;
-    a-dd:hasMaterial                    <https://dati.beniculturali.it/resource/Material/0800241649-brick> ;
-    a-ce:hasRelatedEvent                <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii> ;
-    a-core:isPartOf                     <https://dati.beniculturali.it/resource/Collection/bologna-city-gates> ;
-    a-dd:hasAffixedElement              <https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions> .
+  &lt;https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649&gt;
+    a-cd:hasPreviousStructureOrElements &lt;https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep&gt;
+    a-cd:hasArchitecturalOrder          &lt;https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque&gt;
+    a-dd:hasMaterial                    &lt;https://dati.beniculturali.it/resource/Material/0800241649-brick&gt;
+    a-ce:hasRelatedEvent                &lt;https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii&gt;
+    a-core:isPartOf                     &lt;https://dati.beniculturali.it/resource/Collection/bologna-city-gates&gt;
+    a-dd:hasAffixedElement              &lt;https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions&gt .
 
-  <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep>
+  &lt;https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep&gt;
     rdfs:label "medieval castle keep"@en .
 
-  <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque>
+  &lt;https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque&gt;
     rdfs:label "Baroque"@en .
 
-  <https://dati.beniculturali.it/resource/Material/0800241649-brick>
+  &lt;https://dati.beniculturali.it/resource/Material/0800241649-brick&gt;
     rdfs:label "brick"@en .
 
-  <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii>
+  &lt;https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii&gt;
     rdfs:label "Battle of Porta Lame (World War II)"@en .
 
-  <https://dati.beniculturali.it/resource/Collection/bologna-city-gates>
+  &lt;https://dati.beniculturali.it/resource/Collection/bologna-city-gates&gt;
     rdfs:label "Bologna city gates"@en .
 
-  <https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions>
+  &lt;https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions&gt;
     a a-dd:AffixedElement ;
     rdfs:label "two lions"@en .
 
-  <https://dati.beniculturali.it/resource/Description/0800241649-etymology-lame>
-    a-core:describes <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649> ;
+  &lt;https://dati.beniculturali.it/resource/Description/0800241649-etymology-lame&gt;
+    a-core:describes &lt;https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649&gt;
     rdfs:label "The Latin name 'Lame' refers to swamps."@en .
 }
 WHERE {
@@ -298,13 +298,13 @@ WHERE {
      Gemini'CONSTRUCT query adding information about two statues situated outside dedicated to italian partisans 
    </p>
     <pre>  
-PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 
 CONSTRUCT {
-    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+    &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
         arco:hasConstituent _:statues .
     
     _:statues a arco:ArchitecturalHeritage ;
