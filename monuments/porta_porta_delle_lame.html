@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Porta Delle Lame</title>
+  <title>Porta delle Lame </title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    pre {
+      background: #f3e6ff;
+      border-left: 4px solid #6a0dad;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #6a0dad;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <nav>
+  <!-- NAVBAR -->
+ <nav>
   <ul>
     <li><a href="../index.html">🏠 Home</a></li>
     <li><a href="../methodology.html">Methodology</a></li>
@@ -15,7 +54,7 @@
       <a href="#">Monuments ▼</a>
       <ul>
         <li><a href="../monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="../monuments/porta_porta_san_felice.html">Porta San Felice</a></li>
+        <!--li><a href="../monuments/porta_porta_san_felice.html">Porta San Felice</a></li-->
         <li><a href="../monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
         <li><a href="../monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
         <li><a href="../monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
@@ -32,9 +71,110 @@
     <li><a href="../conclusions.html">Conclusions</a></li>
   </ul>
 </nav>
+
+  <!-- CONTENT -->
   <section>
-    <h1>Porta Delle Lame</h1>
-    <p>Sezione dedicata a Porta Delle Lame. Qui puoi inserire i contenuti relativi.</p>
+    <h1>Porta delle Lame (also known as Porta Lame)</h1>
+    <p>
+      Porta delle Lame is one of the historic gates of Bologna, dating back to the 
+      medieval walls. It is also referred to as <i>Porta Lame</i>. This page 
+      presents the results of SPARQL queries executed on the ArCo dataset to 
+      retrieve structured information about this monument.
+    </p>
+
+    <!-- IMAGE -->
+    <div class="img-container">
+      <img src="https://www.bologna.bo/wp-content/uploads/2018/11/porta-delle-lame-2.jpg" alt="Porta delle Lame, Bologna">
+      <p><i>Figure 1: Porta Maggiore in Bologna (example image)</i></p>
+    </div>
+
+    <!-- TABLE SUMMARY -->
+    <h2>General Information</h2>
+    <table>
+      <tr><th>Identifier</th><td>0800241599</td></tr>
+      <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
+      <tr><th>Location</th><td>Bologna, Emilia-Romagna, Italy</td></tr>
+      <tr><th>Alternative name</th><td>Porta Lame</td></tr>
+      <tr><th>Restoration</th><td>1674-1677</td></tr>
+    </table>
+
+    <!-- QUERIES -->
+    <h2>SPARQL Query 1: Retrieve the Gate</h2>
+    <p>
+      The following query searches for architectural heritage labeled as 
+      <b>Porta delle Lame</b> in Bologna:
+    </p>
+    <pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX a-arch: <https://w3id.org/arco/ontology/architectural-description/>
+
+SELECT DISTINCT ?culturalProperty ?title
+       (BOUND(?architecturalOrder) AS ?hasArchitecturalOrder)
+       (BOUND(?constructionDevelopment) AS ?hasConstructionDevelopment)
+       (BOUND(?constructionElement) AS ?hasConstructionElement)
+       (BOUND(?constructionSpace) AS ?hasConstructionSpace)
+       (BOUND(?covering) AS ?hasCovering)
+WHERE {
+  {
+    VALUES ?culturalProperty { <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241649> }
+
+    OPTIONAL { ?culturalProperty rdfs:label ?title . }
+    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
+    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
+  }
+  UNION
+  {
+    VALUES ?culturalProperty { <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800242005> }
+
+    OPTIONAL { ?culturalProperty rdfs:label ?title . }
+    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
+    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
+    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
+  }
+    FILTER(REGEX(?title, "Porta", "i"))
+}
+ORDER BY ?title
+LIMIT 10
+
+
+    </pre>
+
+    <h2>SPARQL Query 2: DESCRIBE</h2>
+    <p>
+      To retrieve all RDF triples related to the monument with identifier 
+      <b>0800241649</b>, a <code>DESCRIBE</code> query was executed:
+    </p>
+    <pre>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+DESCRIBE <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241649>
+WHERE {
+}
+    
+   </pre>
+
+    <h2>Discussion</h2>
+    <p>
+      The queries confirm the existence of Porta delle Lame in the ArCo knowledge graph, 
+      associated with Bologna and classified as architectural heritage. The 
+      <code>DESCRIBE</code> query provides a rich set of metadata, including 
+      identifiers, classifications, and potential references to restoration events.
+    </p>
+<h2>Conclusion</h2>
+    <p>
+      Porta delle Lame (Porta Lame) illustrates how Linked Open Data and SPARQL 
+      queries can be applied to retrieve and analyze cultural heritage information. 
+      This structured approach supports digital documentation, visualization, and 
+      comparative studies with other historic gates of Bologna.
+    </p>
   </section>
 </body>
 </html>
