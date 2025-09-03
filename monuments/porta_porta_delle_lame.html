@@ -105,46 +105,25 @@
       <b>Porta delle Lame</b> in Bologna:
     </p>
     <pre>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX a-arch: <https://w3id.org/arco/ontology/architectural-description/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX cis:  <http://dati.beniculturali.it/cis/>
 
-SELECT DISTINCT ?culturalProperty ?title
-       (BOUND(?architecturalOrder) AS ?hasArchitecturalOrder)
-       (BOUND(?constructionDevelopment) AS ?hasConstructionDevelopment)
-       (BOUND(?constructionElement) AS ?hasConstructionElement)
-       (BOUND(?constructionSpace) AS ?hasConstructionSpace)
-       (BOUND(?covering) AS ?hasCovering)
+SELECT DISTINCT ?porta ?label
 WHERE {
-  {
-    VALUES ?culturalProperty { <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241649> }
-
-    OPTIONAL { ?culturalProperty rdfs:label ?title . }
-    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
-    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
-  }
-  UNION
-  {
-    VALUES ?culturalProperty { <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800242005> }
-
-    OPTIONAL { ?culturalProperty rdfs:label ?title . }
-    OPTIONAL { ?culturalProperty a-arch:hasArchitecturalOrder ?orderNode . ?orderNode rdfs:label ?architecturalOrder . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionDevelopment ?devNode . ?devNode rdfs:label ?constructionDevelopment . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionElement ?elemNode . ?elemNode rdfs:label ?constructionElement . }
-    OPTIONAL { ?culturalProperty a-arch:hasConstructionSpace ?spaceNode . ?spaceNode rdfs:label ?constructionSpace . }
-    OPTIONAL { ?culturalProperty a-arch:hasCovering ?covNode . ?covNode rdfs:label ?covering . }
-  }
-    FILTER(REGEX(?title, "Porta", "i"))
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
+  FILTER (REGEX(STR(?label), "Porta Lame", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
 }
-ORDER BY ?title
-LIMIT 10
-
+LIMIT 100
 
     </pre>
 
