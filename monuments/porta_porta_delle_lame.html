@@ -206,7 +206,36 @@ WHERE {
   FILTER (true)
 }
     </pre>
+<p>
+      Then, I gave the exact same prompt to Gemini and Chat-gpt and compared the answers.
 
+Gemini: 
+   </p>
+    <h2>SPARQL Query 5: CONSTRUCT</h2>
+    <p>
+      Gemini's CONSTRUCT query
+   </p>
+    <pre>
+      PREFIX arco-cd: <https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-ce: <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX arco-dd: <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+
+CONSTRUCT {
+    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+        arco-cd:hasPreviousStructureOrElement "cassero medievale" ;
+        arco-cd:hasArchitecturalOrder "baroque" ;
+        arco-dd:hasMaterial "brick" ;
+        arco-ce:hasRelatedEvent "battle of Porta Lame during WWII" ;
+        arco-core:describes "the latin name Lame refers to swamps" ;
+        arco-core:isPartOf <https://w3id.org/arco/resource/CityGate/BolognasCityGates> ;
+        arco-dd:AffixedElement "two lions" .
+}
+WHERE {
+    FILTER (true)
+}
+ </pre>
 <h2>Conclusion</h2>
     <p>
       Porta delle Lame (Porta Lame) illustrates how Linked Open Data and SPARQL 
