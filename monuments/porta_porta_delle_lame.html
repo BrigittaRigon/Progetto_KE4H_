@@ -146,6 +146,42 @@ WHERE {
       <code>DESCRIBE</code> query provides a rich set of metadata, including 
       identifiers, classifications, and potential references to restoration events.
     </p>
+<h2>SPARQL Query 3: CONSTRUCT</h2>
+    <p>
+      To add missing information to the monument with identifier 
+      <b>0800241649</b>, a <code>CONSTRUCT</code> query was executed:
+      
+   </p>
+   
+   <pre>
+  
+PREFIX arco-cons: <https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco-event: <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+    arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
+    arco-cons:hasArchitecturalOrder "baroque"@en ;
+    arco-den:hasMaterial "brick"@en ;
+    arco-event:hasRelatedEvent "battle of Porta Lame during WWII"@en ;
+    arco-core:describes "the latin name Lame refers to swamps"@en ;
+    arco-core:isPartOf "Bologna's city gates"@en ;
+    arco-den:AffixedElement "two lions"@en .
+}
+WHERE {
+  FILTER (true)
+}
+</pre>
+     <h2>Discussion</h2>
+     <p>
+       I explored ArCo ontology .
+ Then I used a FEW-SHOTS CHAIN-OF-THOUGHT approach on Deepseek to add the missing information. I noticed that the LLM didn’t add ArCo’s properties in the query but other ones that worked nonetheless. I had to specify what ArCo’s properties I wanted to use with the relative URIs.
+Deepseek provided me a working query because I added the ArCo’s properties of the selected information, but it didn’t provide a step by step explanation at first. It only gave me some notes about the query. Then I asked the LLM to replace AffixedElement with the Iconclass code :  
+     </p>  
 <h2>Conclusion</h2>
     <p>
       Porta delle Lame (Porta Lame) illustrates how Linked Open Data and SPARQL 
