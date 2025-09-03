@@ -183,12 +183,12 @@ WHERE {
    </p>
    
    <pre>
-PREFIX arco-cons: <https://w3id.org/arco/ontology/construction-description/>
-PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX arco-event: <https://w3id.org/arco/ontology/cultural-event/>
-PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
-PREFIX iconclass: <http://iconclass.org/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco-event: &lt;https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/>
+PREFIX iconclass: &lt;http://iconclass.org/>
+PREFIX dcterms: &lt;http://purl.org/dc/terms/>
 
 CONSTRUCT {
   <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
@@ -209,18 +209,18 @@ WHERE {
 <p>
       Then, I gave the exact same prompt to Gemini and Chat-gpt and compared the answers.
 
-Gemini: 
+Gemini provided a detailed and organized step by step analysis: 
    </p>
     <h2>SPARQL Query 5: CONSTRUCT</h2>
     <p>
       Gemini's CONSTRUCT query
    </p>
     <pre>
-      PREFIX arco-cd: <https://w3id.org/arco/ontology/construction-description/>
-PREFIX arco-ce: <https://w3id.org/arco/ontology/cultural-event/>
-PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
-PREFIX arco-dd: <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+      PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/construction-description&gt;
+PREFIX arco-ce: &lt;https://w3id.org/arco/ontology/cultural-event&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core&gt;
+PREFIX arco-dd: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco&gt;
 
 CONSTRUCT {
     <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
@@ -236,13 +236,86 @@ WHERE {
     FILTER (true)
 }
  </pre>
-<h2>Conclusion</h2>
+  <p>
+     CHAT-GPT: presented another query .At first it kept a useless prefix of the example .
+   </p>
+    <h2>SPARQL Query 6: CONSTRUCT</h2>
     <p>
-      Porta delle Lame (Porta Lame) illustrates how Linked Open Data and SPARQL 
-      queries can be applied to retrieve and analyze cultural heritage information. 
-      This structured approach supports digital documentation, visualization, and 
-      comparative studies with other historic gates of Bologna.
+      Chat gpt's CONSTRUCT query
+   </p>
+    <pre> 
+      PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX a-cd:  <https://w3id.org/arco/ontology/construction-description/>
+PREFIX a-dd:  <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX a-ce:  <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX a-core:<https://w3id.org/arco/ontology/core/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649>
+    a-cd:hasPreviousStructureOrElements <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep> ;
+    a-cd:hasArchitecturalOrder          <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque> ;
+    a-dd:hasMaterial                    <https://dati.beniculturali.it/resource/Material/0800241649-brick> ;
+    a-ce:hasRelatedEvent                <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii> ;
+    a-core:isPartOf                     <https://dati.beniculturali.it/resource/Collection/bologna-city-gates> ;
+    a-dd:hasAffixedElement              <https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions> .
+
+  <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep>
+    rdfs:label "medieval castle keep"@en .
+
+  <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque>
+    rdfs:label "Baroque"@en .
+
+  <https://dati.beniculturali.it/resource/Material/0800241649-brick>
+    rdfs:label "brick"@en .
+
+  <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii>
+    rdfs:label "Battle of Porta Lame (World War II)"@en .
+
+  <https://dati.beniculturali.it/resource/Collection/bologna-city-gates>
+    rdfs:label "Bologna city gates"@en .
+
+  <https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions>
+    a a-dd:AffixedElement ;
+    rdfs:label "two lions"@en .
+
+  <https://dati.beniculturali.it/resource/Description/0800241649-etymology-lame>
+    a-core:describes <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649> ;
+    rdfs:label "The Latin name 'Lame' refers to swamps."@en .
+}
+WHERE {
+  FILTER (true)
+}
+  </pre> 
+  <h2>Discussion</h2>
+    <p>
+     Overall Deepseek doesn’t provide a very detailed explanation even if it’s clear in its requests. Gemini provided step-by-step reasoning before presenting the full result,it  was clearer and more organized ,it provided simple and concise explanations. They provided different queries structures. Chat-gpt offered a more complex procedure and it took more time to provide the query and the step by step explanation, which was similar to Gemini’s one.
     </p>
+   <p>
+      I asked Gemini to add another information using a zero shot prompt
+   </p>   
+    <h2>SPARQL Query 7: CONSTRUCT</h2>
+    <p>
+     Gemini'CONSTRUCT query adding information about two statues situated outside dedicated to italian partisans 
+   </p>
+    <pre>  
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+
+CONSTRUCT {
+    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+        arco:hasConstituent _:statues .
+    
+    _:statues a arco:ArchitecturalHeritage ;
+        rdfs:label "Statues of Italian Partisans outside Porta Lame"@en .
+}
+WHERE {
+    FILTER (true)
+}
+ </p>
+<h2>Conclusion</h2>
+    
   </section>
 </body>
 </html>
