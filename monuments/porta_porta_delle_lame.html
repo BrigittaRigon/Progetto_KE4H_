@@ -297,7 +297,7 @@ WHERE {
     <p>
      Gemini'CONSTRUCT query adding information about two statues situated outside dedicated to italian partisans 
    </p>
-    <pre>  
+   <pre>  
 PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -313,9 +313,100 @@ CONSTRUCT {
 WHERE {
     FILTER (true)
 }
- </p>
-<h2>Conclusion</h2>
-    
+   </pre>
+
+     <h2>SPARQL Query 8: CONSTRUCT</h2>
+    <p>
+      A Deepseek query was executed:
+    </p>
+    <pre>
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+
+CONSTRUCT {
+  &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
+    arco-cd:hasContext &lt;https://dati.beniculturali.it/resource/Context/PartisanMonuments&gt; .
+  
+  &lt;https://dati.beniculturali.it/resource/Context/PartisanMonuments&gt;
+    rdf:type arco-cd:HistoricContext ;
+    rdfs:label "Partisan memorial context"@en ;
+    arco-core:includesElement &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue1&gt;,
+                               &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue2&gt; ;
+    arco-core:hasHistoricalPeriod "1943-1945" ;
+    arco-core:hasSubject "Italian Resistance"@en .
+  
+  &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue1&gt;
+    rdf:type arco-den:Sculpture ;
+    rdfs:label "Partisan Memorial Statue - North"@en .
+  
+  &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue2&gt;
+    rdf:type arco-den:Sculpture ;
+    rdfs:label "Partisan Memorial Statue - South"@en .
+}
+WHERE {
+  FILTER (true)
+}
+ </pre>
+  <h2>SPARQL Query 9: CONSTRUCT</h2>
+    <p>
+      A Chat gpt query was executed:
+    </p>
+    <pre>  
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+
+CONSTRUCT {
+
+  &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
+
+    arco-cd:hasContext &lt;https://dati.beniculturali.it/resource/Context/PartisanMonuments&gt; .
+
+  
+  &lt;https://dati.beniculturali.it/resource/Context/PartisanMonuments&gt;
+
+    rdf:type arco-cd:HistoricContext ;
+
+    rdfs:label "Partisan memorial context"@en ;
+
+    arco-core:includesElement &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue1&gt;,
+
+                             &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue2&gt; ;
+
+    arco-core:hasHistoricalPeriod "1943-1945" ;
+
+    arco-core:hasSubject "Italian Resistance"@en .
+
+  
+  &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue1&gt;
+
+    rdf:type arco-den:Sculpture ;
+
+    rdfs:label "Partisan Memorial Statue - North"@en .
+
+  
+  &lt;https://dati.beniculturali.it/resource/Monument/PartisanStatue2&gt;
+
+    rdf:type arco-den:Sculpture ;
+
+    rdfs:label "Partisan Memorial Statue - South"@en .
+
+}
+
+WHERE {
+
+  FILTER (true)
+
+}
+</pre>  
+  <h2>Conclusion</h2>
+    <p>
+      Porta delle Lame (Porta Lame) illustrates how Linked Open Data and SPARQL 
+      queries can be applied to retrieve and analyze cultural heritage information. 
+      This structured approach supports digital documentation, visualization, and 
+      comparative studies with other historic gates of Bologna.
+    </p>
   </section>
 </body>
 </html>
