@@ -283,25 +283,25 @@ ChatGPT provided the best answer because it gave me a list of all the existing a
     <h3>PROMPT</h3>
     <p>Let’s create a construct query to create new triples that will enrich the Porta Maggiore page in Arco.  The information to be added should be inserted in the hasDating predicate to say that between 2007 and 2009 the monument was restored.  Let’s think step by step.
 Use these 2 queries as examples: 
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      <pre>PREFIX dc: &lt http://purl.org/dc/elements/1.1/>
+PREFIX rdfs: &lt http://www.w3.org/2000/01/rdf-schema#>
 CONSTRUCT {
-  <https://dati.beniculturali.it/resource/CulturalProperty/0800241627>
+  &lt https://dati.beniculturali.it/resource/CulturalProperty/0800241627>
     dc:title "pôrta ed San Flîṡ"@bo ;
     rdfs:label "pôrta ed San Flîṡ"@bo .
 }
 WHERE {
   FILTER (true)
 }
-PREFIX arco-cons: <https://w3id.org/arco/ontology/construction-description/>
-PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX arco-event: <https://w3id.org/arco/ontology/cultural-event/>
-PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX arco-cons: &lt https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-den: &lt https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco-event: &lt https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: &lt https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: &lt http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: &lt http://purl.org/dc/elements/1.1/>
 
 CONSTRUCT {
-  <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+  &lt https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
     arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
     arco-cons:hasArchitecturalOrder "baroque"@en ;
     arco-den:hasMaterial "brick"@en ;
@@ -312,7 +312,8 @@ CONSTRUCT {
 }
 WHERE {
   FILTER (true)
-}
+} </pre>
+
 </p>
     
        
