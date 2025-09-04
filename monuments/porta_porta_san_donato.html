@@ -186,7 +186,11 @@ LIMIT 200
 </p>
       <h2>SPARQL Query 4:CONSTRUCT</h2>
       <p>Then, I proceeded by using Deepseek with a 0 shot prompting, specifying what I wanted to focus on, deciding to divide the description in 2 different sections, since these specific information were missing in the ArCo ontology:</p>
-     INSERISCI IMMAGINE
+     <!-- IMAGE -->
+    <div class="img-container"> 
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20what%20I%20consider%20worth.png>
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20prompt%200%20shot%20deepseek%20CONSTRUCT.png>
+  </div>
       <p>Deepseek’s answer: Certainly. Here are CONSTRUCT queries to add the missing descriptive data for Porta Zamboni to the ARCO ontology, using appropriate properties and creating necessary intermediate resources.</p>
      <pre>PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
@@ -328,6 +332,10 @@ WHERE {
 }
    </pre>
     <p>Finally, I used ChatGpt with a Zero-shot Chain-of-Thought Prompting to add other specific triples for the properties that I saw were missing:</p>
+     <!-- IMAGE -->
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20prompt%20CONSTRUCT%200%20SHOT.png">
+    </div>
      <pre>PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
