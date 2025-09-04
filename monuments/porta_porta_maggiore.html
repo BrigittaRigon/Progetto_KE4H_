@@ -26,6 +26,10 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+    h3 {
+      color: #be6cfa; 
+      margin-top: 26px; 
+    }
     table {
       border-collapse: collapse;
       margin: 20px auto;
@@ -145,25 +149,76 @@ LIMIT 200
     </pre>
 
     <!-- IMAGE 2 -->
-    <div class="img-container">
+    <!--div class="img-container">
       <img src="../img/porta_maggiore_plan.jpg" alt="Plan of Porta Maggiore">
       <p><i>Figure 2: Plan and structural details of Porta Maggiore</i></p>
-  </div>
+  </div-->
 
-    <h2>Discussion</h2>
+    <h2>USE OF LLM'S</h2>
     <p>
-      The queries confirm the existence of Porta Maggiore in the ArCo knowledge graph, 
-      associated with Bologna and classified as architectural heritage. The 
-      <b> DESCRIBE</b> query provides a rich set of metadata, including 
-      identifiers, classifications, and potential references to restoration events.
+      The <b> DESCRIBE</b> query provides a rich set of metadata, including 
+      identifiers, classifications, and potential references to restoration events. To create this query I gave a Zero shot prompt to different LLM's: <a href="https://chatgpt.com/it-IT/overview/"> ChatGPT </a> and <a href= https://gemini.google.com/app?hl=it> Google Gemini. </a> 
+      
     </p>
+     <h3> ZERO SHOT PROMPT </h3>
+<p>
+  Create a DESCRIBE query to find all of the information available on the ArCo portal about the monument of "Porta Maggiore", unique identifier: 0800241599. Limit 200 results. ORDER alphabetically.  
+Let's compare the two answers:
+</p>
+    <h3> GEMINI'S RESPONSE </h3>
+    <!-- IMAGE -->
+    <div class="img-container">
+    <img src=https://github.com/BrigittaRigon/Progetto_KE4H_/blob/main/Images/Answer%20Gemini%201desc.%20.jpg>
+      <img src= https://github.com/BrigittaRigon/Progetto_KE4H_/blob/main/Images/Gemini2.png>
+      <p> Besides the query we asked for and a brief explenation of the QUery Components, Gemini also provides examples of questions to further elaborate our work: </p>
+      <img src=https://github.com/BrigittaRigon/Progetto_KE4H_/blob/main/Images/gemini3.png>
+      </div>
+     <h3> CHATGPT'S RESPONSE </h3>
+    <div class= "img-container"> 
+      <img src=https://github.com/BrigittaRigon/Progetto_KE4H_/blob/main/Images/CHATGPT%20risp1.jpg>
+    </div>
 
-    <h2>Conclusion</h2>
+    
+    <h3>COMMENTARY </h3>
     <p>
-      Porta Maggiore (Porta Mazzini) illustrates how Linked Open Data and SPARQL 
-      queries can be applied to retrieve and analyze cultural heritage information. 
-      This structured approach supports digital documentation, visualization, and 
-      comparative studies with other historic gates of Bologna.
+     The query provided by Gemini does not retrieve any information. On the contrary, the query proposed by ChatGPT works well to retrieve a functional table of triples about Porta Maggiore. 
+    </p> 
+    <div class= "img-container"> 
+      <img src= https://github.com/BrigittaRigon/Progetto_KE4H_/blob/main/Images/risultato%20chatgpt%201.png>
+      </div>
+      <p> To correct the error, I propose a OneShot prompt to Gemini with the correct query as an example: 
+        I think I can have a ordered list of triples using the ORDER BY keyword. Look at this working query that ChatGPT produced as a response to the same prompt I gave you in the beginning.Use it as an example to correct the error:
+PREFIX arco: &lt; https://w3id.org/arco/ontology/arco/&gt;
+PREFIX dc:   &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX arco-arco: &lt; https://w3id.org/arco/resource/&gt;
+
+DESCRIBE ?s
+WHERE {
+  ?s arco:uniqueIdentifier "0800241599" .
+}
+ORDER BY ?s
+LIMIT 200
+ I executed this on the ArCo knowledge graph and had as a result an ordered table of triples
+      </p>
+  <h3>GEMINI'S RESPONSE </h3>
+    <p> You are absolutely correct. My previous answer was too general and missed a crucial detail about how SPARQL engines handle DESCRIBE queries with a WHERE clause. Thank you for providing that excellent example, as it highlights a powerful and valid use case.
+The reason that query works is because you are not ordering the triples themselves, but rather the list of resources to be described.
+The Logic of the Query
+Your query works in two distinct steps:
+1.	Finding the Resource(s): The SPARQL engine first executes the WHERE clause { ?s arco:uniqueIdentifier "0800241599" . }. This is a pattern matching step that finds all subjects (?s) that have the specified unique identifier. In this specific case, it finds only one subject: &lt;https://w3id.org/arco/resource/Monumento/0800241599&gt;.
+2.	Ordering and Describing: The engine then takes this list of one subject, applies the ORDER BY ?s clause to it, and then applies the LIMIT 200 clause. Finally, it performs a DESCRIBE operation on each subject in the resulting list.
+Since the WHERE clause only found a single resource (?s), the ORDER BY and LIMIT clauses have no practical effect on the output. However, the query is perfectly valid and syntactically correct, and it is the proper way to combine these elements.
+The Correct and Complete Query
+Based on your finding, here is the complete and correct query that retrieves all information about the "Porta Maggiore" monument, respects your desire for ordering, and is syntactically sound for the ArCo knowledge graph:
+Snippet di codice
+DESCRIBE ?s
+WHERE {
+  ?s &lt;https://w3id.org/arco/ontology/arco/uniqueIdentifier> "0800241599" .&gt;
+}
+ORDER BY ?s
+LIMIT 200
+This query is superior to a simple DESCRIBE with a hard-coded URI because it is more flexible. If you were looking for multiple monuments with a specific property, this same query structure would find and describe all of them, applying the ORDER BY and LIMIT clauses to the list of monuments before returning their descriptions.
+
     </p>
   </section>
 </body>
