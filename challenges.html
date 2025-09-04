@@ -34,8 +34,8 @@
     <h1>FACED CHALLENGES </h1>
     <p>• Wrong queries in the beginning, leading us to believe none of the monuments we wanted to work on existed in the Ontology:</p>
     <pre>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+    PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema##&gt;
+    PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/#&gt;
 
     SELECT ?mura ?nome ?descrizione
     WHERE {
@@ -45,6 +45,12 @@
     OPTIONAL { ?mura arco:hasDescription ?descrizione . }
    }
    </pre>
+      <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/wrong%20query.png" >
+      </div>   
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/wrong%20query.png" >
+      </div>   
       <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Screenshot%202025-09-04%20180341.png" >
       </div>
@@ -58,33 +64,7 @@
      <p>• Some gates do not exist on the ontology, like Porta San Mamolo, we had to apply the CONSTRUCT query to create new information about them.</p> 
       
       <p>• LLM's mistakes in creating queries:</p>
-        <pre>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX tiapit: <https://w3id.org/italia/onto/TI/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
-CONSTRUCT {
-  <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
-    dc:title "pôrta däl Lâm"@bo ;
-    rdfs:label "pôrta däl Lâm"@bo ;
-    arco:hasTimeIndexedTypology [
-
-      arco:hasTypology <http://purl.org/arco/resource/HistoricOrArtisticProperty/ArchitecturalStructure> ;
-      arco:startTime "1200"^^xsd:gYear
-    ] ;
-    a-cd:hasHistoricalOrArtisticDescription "Name derives from Latin 'lama' meaning swamp, due to numerous ponds in the area. 
-    Baroque architectural style. Site of the important Battle of Porta Lame during WWII (1944). Characterized by two lions at the entrance."@en ;
-    a-cd:iconclassCode "45A12" ;
-    tiapit:hasHistoricalNote "Important site of the Battle of Porta Lame during World War II where partisan forces repelled Nazi-Fascist troops"@en .
-}
-WHERE {
-  BIND (<https://dati.beniculturali.it/resource/CulturalProperty/0800241649> AS ?portaLame)
-  FILTER (true)
-}
-</pre>
+        
  <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/wrong%20variables.png" >
       </div>    
