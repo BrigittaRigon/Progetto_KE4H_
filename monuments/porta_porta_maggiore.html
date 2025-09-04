@@ -344,9 +344,76 @@ WHERE {
   FILTER (true)
 }</pre>
 
-          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXxaK7o2_4JhFMk2BuAAL51rXZbt-gqPBPc6B6NlikumDfpAuN0Kck0daNlkPr7zQwj0pr1DUGhBSYQxsJeJVY4KV_Yvfg6m7_u0KvJNio_FCa0kSTocTavgpDMLaILlF4P9zLg2egxwo8=s1360-w1360-h1020-rw" alt="Porta Maggiore, Bologna">
+          <img src="#">
+    <b>CHAT</b>
+    <pre>PREFIX arco-cd: &lt https://w3id.org/arco/ontology/context-description/>
+PREFIX l0:      &lt https://w3id.org/italia/onto/l0/>
+PREFIX ti:      &lt https://w3id.org/italia/onto/TI/>
+PREFIX rdfs:    &lt http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     &lt http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  &lt https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599>
+      arco-cd:hasDating &lt https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009> .
+
+  &lt https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009>
+      a               arco-cd:Dating ;
+      rdfs:label      "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      l0:name         "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      arco-cd:hasDatingEvent &lthttps://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009> .
+
+  &lt https://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009>
+      a               l0:Event ;
+      rdfs:label      "restauro"@it ;
+      l0:name         "restauro"@it ;
+      ti:atTime       &lthttps://w3id.org/arco/resource/TimeInterval/2007-2009> .
+
+  &lt https://w3id.org/arco/resource/TimeInterval/2007-2009>
+      a               ti:TimeInterval ;
+      rdfs:label      "2007-2009"@it ;
+      ti:startTime    "2007"^^xsd:gYear ;
+      ti:endTime      "2009"^^xsd:gYear .
+}
+WHERE {
+  FILTER(true)
+}
+</pre>
+          <img src="#">
 
 
+    <b>DEEPSEEK</b>
+    <pre>PREFIX arco:  &lt https://w3id.org/arco/ontology/arco/>
+PREFIX arco-event:  &lt https://w3id.org/arco/ontology/cultural-event/>
+PREFIX rdfs:  &lt http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  &lt http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  # The main triple linking Porta Maggiore to a new dating event
+   &lt https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599>
+    arco:hasDating ?restorationEvent .
+
+  # The details of the restoration event itself
+  ?restorationEvent a arco-event:RestorationEvent ;
+                    rdfs:label "Restauro della Porta Maggiore (2007-2009)"@it ;
+                    arco:hasTimeSpan ?timeSpan .
+
+  # The details of the time span for the event
+  ?timeSpan a arco:TimeSpan ;
+            arco:startYear "2007"^^xsd:gYear ;
+            arco:endYear "2009"^^xsd:gYear .
+}
+WHERE {
+  # We need to generate unique identifiers for the new event and time span nodes.
+  # We use the UUID() function to create stable, unique blank node identifiers.
+  BIND(URI(CONCAT("urn:uuid:", STRUUID())) AS ?restorationEvent)
+  BIND(URI(CONCAT("urn:uuid:", STRUUID())) AS ?timeSpan)
+
+  # The FILTER (true) is kept from your examples to ensure the WHERE clause
+  # always evaluates to true and generates the bindings for our new nodes.
+  FILTER (true)
+}
+</pre>
+              <img src="#">
 
 </p>
    
