@@ -132,7 +132,9 @@ DESCRIBE &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/080
 WHERE {
 }
 </pre>
-
+ <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/p%20lame%20virtuoso%20describe.png" >
+      </div> 
     <h2>Discussion</h2>
     <p>
       The queries confirm the existence of Porta delle Lame in the ArCo knowledge graph, 
@@ -141,9 +143,25 @@ WHERE {
       identifiers, classifications, and potential references to restoration events.
     </p>
     <h2>Use of LLMs</h2>
-     <p>
+     <p> After asking for missing information using a zero-shot prompt from ChatGPT</p>
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/p%20lame%20virtuoso%20describe.png" >
+      </div> 
+    <p>
        I explored ArCo ontology .
- Then I used a FEW-SHOTS CHAIN-OF-THOUGHT approach on Deepseek to add the missing information. I noticed that the LLM didn’t add ArCo’s properties in the query but other ones that worked nonetheless. I had to specify what ArCo’s properties I wanted to use with the relative IRIs.
+ Then I used a FEW-SHOTS CHAIN-OF-THOUGHT approach on Deepseek to add the missing information. My prompt was :
+    </p>   
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/prompt%20few%20shots.png" >
+      </div> 
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/prompt%20few%20shots%202..png" >
+      </div> 
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/step%20by%20step.png" >
+      </div> 
+   <p>
+I noticed that the LLM didn’t add ArCo’s properties in the query but other ones that worked nonetheless. I had to specify what ArCo’s properties I wanted to use with the relative IRIs.
 Deepseek provided me a working query because I added the ArCo’s properties of the selected information, but it didn’t provide a step by step explanation at first. It only gave me some notes about the query. Then I asked the LLM to replace AffixedElement with the Iconclass code :  
      </p>  
 <h2>SPARQL Query 3: CONSTRUCT</h2>
@@ -211,6 +229,9 @@ WHERE {
 
 Gemini provided a detailed and organized step by step analysis: 
    </p>
+    <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/step%20gemini.png" >
+      </div>
     <h2>SPARQL Query 5: CONSTRUCT</h2>
     <p>
       Gemini's CONSTRUCT query
@@ -292,6 +313,9 @@ WHERE {
     </p>
    <p>
       I asked Gemini to add another information using a zero shot prompt
+     <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zero%20shot.png" >
+      </div>
    </p>   
     <h2>SPARQL Query 7: CONSTRUCT</h2>
     <p>
