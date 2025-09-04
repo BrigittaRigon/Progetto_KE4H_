@@ -220,6 +220,13 @@ LIMIT 200
 This query is superior to a simple DESCRIBE with a hard-coded URI because it is more flexible. If you were looking for multiple monuments with a specific property, this same query structure would find and describe all of them, applying the ORDER BY and LIMIT clauses to the list of monuments before returning their descriptions.
 
     </p>
+    <h2>ASKING LLM’S HELP TO ENRICH THE KG </h2>
+    <p>Since I noticed that the entity Piazza Maggiore was very well described in the ArCo ontology, I decided to ask the different LLM’s for help about the information I could add. 
+<h3>PROMPT</h3>  
+I need to enrich this entity in the Arco knowledge graph: https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599, what information can I add? 
+ChatGPT provided the best answer because it gave me a list of all the existing and missing information and the predicates I should use to create the triples, with examples. In fact, ChatGPT took about 2/3 minutes to provide the answer, against the few seconds of the other LLMs (Gemini and DeepSeek). 
+Here is the Summary table of the answer provided by ChatGPT:
+</p>
   </section>
 </body>
 </html>
