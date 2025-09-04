@@ -226,6 +226,63 @@ This query is superior to a simple DESCRIBE with a hard-coded URI because it is 
 I need to enrich this entity in the Arco knowledge graph: https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599, what information can I add? 
 ChatGPT provided the best answer because it gave me a list of all the existing and missing information and the predicates I should use to create the triples, with examples. In fact, ChatGPT took about 2/3 minutes to provide the answer, against the few seconds of the other LLMs (Gemini and DeepSeek). 
 <p>Here is the Summary table of the answer provided by ChatGPT:</p>
+      <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Enrichment Area</th>
+                        <th>Suggestions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="area">External Linking</td>
+                        <td>owl:sameAs, alignment with external LOD like Wikidata or CIDOC-CRM <span class="info-icon">ℹ️</span></td>
+                    </tr>
+                    <tr>
+                        <td class="area">Contextual Designation</td>
+                        <td>More detailed historical dating, phases of use or restoration</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Documentation</td>
+                        <td>3D models, plan drawings, inscription texts, archival sources</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Material Details</td>
+                        <td>Technical status, construction materials</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Provenance & Ownership</td>
+                        <td>Acquisition history, previous owners</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Spatial Data</td>
+                        <td>Precise coordinates, GIS representations, historical maps</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Authorship Attribution</td>
+                        <td>Architect names, designer attributions</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Usage Evolution</td>
+                        <td>Detailed current/historical uses</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Interventions & Conservation</td>
+                        <td>Timeline, type of conservation work, methodologies</td>
+                    </tr>
+                    <tr>
+                        <td class="area">Cultural Significance</td>
+                        <td>Symbolic or community-related attributions, linked events</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="actions">
+            <button class="btn"><i class="fas fa-download"></i> Export as PDF</button>
+            <button class="btn btn-outline"><i class="fas fa-share-alt"></i> Share</button>
+        </div>
 </p>
   </section>
 </body>
