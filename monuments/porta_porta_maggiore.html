@@ -123,16 +123,15 @@ WHERE {
 LIMIT 100
     </pre>
 <p>
-  This query gives as a result all the links to the Arco pages labeled "Porta Maggiore." The links refer to pages in Italian and in English:
-</p>
+  This query provides all the pages related to "Porta Maggiore" inside the ArCo ontology. There are to different links to the Italian and English language pages. Results are presented as follows: </p>
     <!-- IMAGE -->
     <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Query%20SELECT%20result%201.png" style= "width:1300px; height: 300px;">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Query%20SELECT%20result%201.png" style= "width:1280px; height: 720px;">
       </div>
-    <h2>SPARQL Query 2: DESCRIBE</h2>
+    <h2>SPARQL Query 2: DESCRIBE the entity found</h2>
     <p>
-      To retrieve all RDF triples related to the monument with identifier 
-      <b>0800241599</b>, a <code>DESCRIBE</code> query was executed:
+      Having found the ArCo page about Porta Maggiore, we now have the unique identifier of the monument:"<b>0800241599</b>," to retrieve all RDF triples related to this identifier we  
+       a <code>DESCRIBE</code> query was executed:
     </p>
     <pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
@@ -146,10 +145,10 @@ LIMIT 200
     </pre>
 
     <!-- IMAGE 2 -->
-    <!--div class="img-container">
+    <div class="img-container">
       <img src="../img/porta_maggiore_plan.jpg" alt="Plan of Porta Maggiore">
       <p><i>Figure 2: Plan and structural details of Porta Maggiore</i></p>
-  </div-->
+  </div>
 
     <h2>Discussion</h2>
     <p>
