@@ -31,11 +31,33 @@
   </ul>
 </nav>
   <section>
-    <h1>Query 1</h1>
-    <p>bla bla bla</p>
-    <h2>Query 2</h2>
-    <p>bla bla bla</p>
-    <h2>Query 3</h2>
+    <h1>FACED CHALLENGES </h1>
+    <p>Wrong queries in the beginning, leading us to believe none of the monuments we wanted to work on existed in the Ontology:</p>
+    <pre>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+
+    SELECT ?mura ?nome ?descrizione
+    WHERE {
+    ?mura rdfs:label ?nome .
+    FILTER(CONTAINS(LCASE(STR(?nome)), "mura di bologna")) .
+
+    OPTIONAL { ?mura arco:hasDescription ?descrizione . }
+   }
+  </pre>
+      <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Screenshot%202025-09-04%20180341.png" >
+      </div>
+    <p>At the beginning, we didn't find results for Porta San Donato because this entity was called Porta Zamboni in the Arco Ontology:</p>
+       <div class="img-container">
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Screenshot%202025-09-04%20180851.png" >
+      </div>
+      
+     <p>Some gates do not exist on the ontology, like Porta San Mamolo, we had to apply the CONSTRUCT query to create new information about them.</p> 
+      
+      <p>LLM's mistakes in creating queries:</p>
+    
+      <h2>Query 3</h2>
     <p>bla bla bla</p>
   </section>
 </body>
