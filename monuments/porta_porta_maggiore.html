@@ -4,145 +4,49 @@
   <meta charset="UTF-8">
   <title>Porta Maggiore </title>
   <link rel="stylesheet" href="../style.css">
- <style>
-    /* Reset utile e box-sizing */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; padding: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #fbf9ff; color: #222; -webkit-font-smoothing:antialiased;}
-    a { color: inherit; }
-
-    /* Layout centrale */
-    .page {
-      max-width: 1100px;
-      margin: 18px auto;
-      padding: 18px;
-    }
-
-    /* NAVBAR: centrata e responsive */
-    nav {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(16,16,16,0.06);
-      padding: 6px 12px;
-      margin-bottom: 18px;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap; /* consente wrap su schermi stretti */
-    }
-    nav ul > li {
-      position: relative;
-    }
-    nav a {
-      display: block;
-      padding: 10px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #4b0082;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    nav a:hover {
-      background: rgba(106,13,173,0.06);
-    }
-
-    /* Dropdown centrato sotto la voce */
-    nav ul li ul {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 180px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 6px 0;
-      box-shadow: 0 10px 28px rgba(16,16,16,0.08);
-      display: none;
-      z-index: 40;
-    }
-    nav ul li:hover > ul { display: block; } /* hover per desktop */
-    nav ul li ul li {
-      display: block;
-    }
-    nav ul li ul li a {
-      padding: 8px 14px;
-      font-weight: 500;
-    }
-
-    /* Contenuto principale */
-    section h1 { margin-top: 6px; color: #3a0a6b; font-size: 28px; }
-    h2 { color: #4b0082; margin-top: 30px; }
-    h3 { color: #6f2ad6; margin-top: 22px; }
-
-    .img-container { text-align: center; margin: 20px 0; }
-    .img-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      display: inline-block;
-    }
-    .img-container p { margin: 6px 0 0; font-size: 0.95rem; color:#444; }
-
+  <style>
     pre {
       background: #f3e6ff;
       border-left: 4px solid #6a0dad;
-      padding: 12px;
+      padding: 10px;
       overflow-x: auto;
       border-radius: 8px;
-      font-size: 13px;
-      line-height: 1.45;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-      white-space: pre-wrap; /* migliora la resa su schermi stretti */
-      word-break: break-word;
+      font-size: 14px;
     }
-
-    /* Tabelle responsive */
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    h3 {
+      color: #be6cfa; 
+      margin-top: 26px; 
+    }
     table {
       border-collapse: collapse;
-      margin: 18px auto;
-      width: 100%;
-      max-width: 1000px;
+      margin: 20px auto;
+      width: 80%;
       background: #fff;
-      border-radius: 6px;
-      overflow: hidden;
     }
     th, td {
-      border: 1px solid #e9e6f2;
-      padding: 12px 14px;
+      border: 1px solid #ddd;
+      padding: 10px;
       text-align: left;
     }
     th {
       background: #6a0dad;
       color: white;
-      font-weight: 700;
-    }
-
-    /* Piccole ottimizzazioni tipografiche */
-    p { color: #2f2f2f; line-height: 1.6; }
-    .table-container table { box-shadow: 0 6px 16px rgba(16,16,16,0.04); }
-
-    /* Responsive tweaks */
-    @media (max-width: 780px) {
-      .page { padding: 12px; }
-      nav ul { gap: 6px; }
-      nav a { padding: 10px 10px; font-size: 14px; }
-      nav ul li ul {
-        position: static;
-        transform: none;
-        box-shadow: none;
-        margin-top: 6px;
-        display: none; /* default: hidden on mobile, toggle via JS */
-      }
-      nav ul li.open > ul { display: block; } /* classe toggled by JS */
-      table, pre { font-size: 12px; }
     }
   </style>
+
 </head>
 <body>
   <!-- NAVBAR -->
