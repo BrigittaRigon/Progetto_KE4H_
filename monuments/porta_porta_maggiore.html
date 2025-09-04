@@ -416,9 +416,56 @@ WHERE {
               <img src="#">
 
 </p>
-   
-       
+    <p>  Gemini and Deep Seek provided a step-by-step explanation. Whereas chat gpt did not. Moreover, we can see that the query provided by DeepSeek does not work.
+FINAL CONSTRUCT QUERY AND RESULTS
+Having this working query, it was possible to add other information to the same query to keep enriching the KG, repeating the same subject but changing predicates and objects. Here’s the final result. 
 </p>
+    <pre> PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/> 
+PREFIX arco-dd: &lt;https://w3id.org/arco/ontology/description/>
+PREFIX l0:      &lt;https://w3id.org/italia/onto/l0/>
+PREFIX ti:      &lt;https://w3id.org/italia/onto/TI/>
+PREFIX rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     &lt;http://www.w3.org/2001/XMLSchema#>
+PREFIX dc:      &lt;http://purl.org/dc/elements/1.1/>
+
+CONSTRUCT {
+  &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241599>
+    arco-dd:hasMaterial "laterizio" ;
+    rdfs:label "Porta Maggiore (Bologna)"@it ;
+    dc:title "pôrta ed Stra Mażåur"@bo ;
+    rdfs:label "pôrta ed Stra Mażåur"@bo .
+  &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599>
+      arco-cd:hasDating &lt;https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009> .
+
+  &lt;https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009>
+      a               arco-cd:Dating ;
+      rdfs:label      "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      l0:name         "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      arco-cd:hasDatingEvent &lt;https://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009> .
+
+  &lt;https://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009>
+      a               l0:Event ;
+      rdfs:label      "restauro"@it ;
+      l0:name         "restauro"@it ;
+      ti:atTime       &lt;https://w3id.org/arco/resource/TimeInterval/2007-2009> .
+
+  &lt;https://w3id.org/arco/resource/TimeInterval/2007-2009>
+      a               ti:TimeInterval ;
+      rdfs:label      "2007-2009"@it ;
+      ti:startTime    "2007"^^xsd:gYear ;
+      ti:endTime      "2009"^^xsd:gYear .
+}
+WHERE {
+  FILTER (true)
+}
+</pre>
+   
+                     <img src="#">
+
+
+</p>
+  <h3>CONCLUSION:</h3>
+    <p>cooming soon...</p>
   </section>
 </body>
 </html>
