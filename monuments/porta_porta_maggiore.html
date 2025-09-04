@@ -314,7 +314,140 @@ WHERE {
   FILTER (true)
 } </pre>
 
-</p>
+<h3> TABLE OF THE DIFFERENT RESPONSES </h3>
+    <div class="container">
+        <header>
+            <h1>SPARQL Query Comparison</h1>
+            <p class="subtitle">Comparison of three SPARQL CONSTRUCT queries for adding restoration dating information to cultural heritage data</p>
+        </header>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>SPARQL Query</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="platform">GEMINI</td>
+                        <td class="query">PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX time: &lt;http://www.w3.org/2006/time#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+CONSTRUCT {
+  &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599&gt;
+    arco-cd:hasDating [
+      a arco-cd:Dating ;
+      rdfs:label "Restoration of the Porta Maggiore monument"@en ;
+      arco-cd:hasTimeInterval [
+        a time:Interval ;
+        time:hasBeginning [
+          a time:Instant ;
+          time:inXSDDateTime "2007-01-01T00:00:00Z"^^xsd:dateTime
+        ] ;
+        time:hasEnd [
+          a time:Instant ;
+          time:inXSDDateTime "2009-12-31T23:59:59Z"^^xsd:dateTime
+        ]
+      ]
+    ] .
+}
+WHERE {
+  FILTER (true)
+}</td>
+                        <td class="status working">Working</td>
+                    </tr>
+                    <tr>
+                        <td class="platform">CHAT</td>
+                        <td class="query">PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX l0:      &lt;https://w3id.org/italia/onto/l0/&gt;
+PREFIX ti:      &lt;https://w3id.org/italia/onto/TI/&gt;
+PREFIX rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX xsd:     &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+CONSTRUCT {
+  &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599&gt;
+      arco-cd:hasDating &lt;https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009&gt; .
+
+  &lt;https://w3id.org/arco/resource/Dating/0800241599-restauro-2007-2009&gt;
+      a               arco-cd:Dating ;
+      rdfs:label      "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      l0:name         "Cronologia restauro 2007–2009 del bene 0800241599"@it ;
+      arco-cd:hasDatingEvent &lt;https://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009&gt; .
+
+  &lt;https://w3id.org/arco/resource/Event/0800241599-restauro-2007-2009&gt;
+      a               l0:Event ;
+      rdfs:label      "restauro"@it ;
+      l0:name         "restauro"@it ;
+      ti:atTime       &lt;https://w3id.org/arco/resource/TimeInterval/2007-2009&gt; .
+
+  &lt;https://w3id.org/arco/resource/TimeInterval/2007-2009&gt;
+      a               ti:TimeInterval ;
+      rdfs:label      "2007-2009"@it ;
+      ti:startTime    "2007"^^xsd:gYear ;
+      ti:endTime      "2009"^^xsd:gYear .
+}
+WHERE {
+  FILTER(true)
+}</td>
+                        <td class="status working">Working</td>
+                    </tr>
+                    <tr>
+                        <td class="platform">DEEPSEEK</td>
+                        <td class="query">PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco-event: &lt;https://w3id.org/arco/ontology/cultural-event/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+CONSTRUCT {
+  # The main triple linking Porta Maggiore to a new dating event
+  &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241599&gt;
+    arco:hasDating ?restorationEvent .
+
+  # The details of the restoration event itself
+  ?restorationEvent a arco-event:RestorationEvent ;
+                    rdfs:label "Restauro della Porta Maggiore (2007-2009)"@it ;
+                    arco:hasTimeSpan ?timeSpan .
+
+  # The details of the time span for the event
+  ?timeSpan a arco:TimeSpan ;
+            arco:startYear "2007"^^xsd:gYear ;
+            arco:endYear "2009"^^xsd:gYear .
+}
+WHERE {
+  # We need to generate unique identifiers for the new event and time span nodes.
+  # We use the UUID() function to create stable, unique blank node identifiers.
+  BIND(URI(CONCAT("urn:uuid:", STRUUID())) AS ?restorationEvent)
+  BIND(URI(CONCAT("urn:uuid:", STRUUID())) AS ?timeSpan)
+
+  # The FILTER (true) is kept from your examples to ensure the WHERE clause
+  # always evaluates to true and generates the bindings for our new nodes.
+  FILTER (true)
+}</td>
+                        <td class="status not-working">Not Working</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="note">
+            <p><strong>Note:</strong> The DeepSeek query does not work because:</p>
+            <ul>
+                <li>It uses the <code>STRUUID()</code> function which is not standard in SPARQL 1.1</li>
+                <li>It attempts to create URIs with <code>urn:uuid:</code> prefix using <code>URI()</code> function which doesn't exist in SPARQL</li>
+                <li>The proper approach would be to use blank nodes or predefined URIs</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>SPARQL Query Comparison • Cultural Heritage Data Enrichment Project • © 2023</p>
+        </footer>
+    </div>
     
        
 </p>
