@@ -398,8 +398,9 @@ Result: <!-- IMAGE -->
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20what%20I%20consider%20worth.png">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20prompt%200%20shot%20deepseek%20CONSTRUCT.png">
   </div>
-    <h2>CONTEXT DESCRIPTION</h2>
-     <pre>PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
+    <h2>Denotative Description (Dimensions, Materials, Technique)</h2>
+     <pre>
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
 PREFIX arco-den:&lt;https://w3id.org/arco/ontology/denotative-description/>
 PREFIX arco-cd:&lt;https://w3id.org/arco/ontology/context-description/>
@@ -466,8 +467,9 @@ CONSTRUCT {
 }
 WHERE {
   VALUES (?dummy) { (1) }
-}</pre>
-<h2>DENOTATIVE DESCRIPTION:</h2>
+}
+</pre>
+<h2>Context Description (Authorship, Conservation)</h2>
 <pre>
 PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/&gt;>
 PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
@@ -537,7 +539,7 @@ CONSTRUCT {
 WHERE {
   VALUES (?dummy) { (1) }
 }
-  </pre>
+</pre>
     <p>Finally, I used ChatGpt with a Zero-shot Chain-of-Thought Prompting to add other specific triples for the properties that I saw were missing:</p>
      <!-- IMAGE -->
     <div class="img-container">
