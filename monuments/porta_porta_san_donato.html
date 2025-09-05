@@ -193,11 +193,12 @@ LIMIT 100
       <code>DESCRIBE</code> query can be used with its unique identifier.
     </p>
     <pre>
-PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
-
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/>
+PREFIX arco-arco:&lt;https://w3id.org/arco/resource/>
 DESCRIBE ?s
 WHERE {
-  ?s arco:uniqueIdentifier "0800241601" .
+  ?s arco:uniqueIdentifier "0800241652" .
 }
 ORDER BY ?s
 LIMIT 200
