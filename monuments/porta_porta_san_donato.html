@@ -400,7 +400,7 @@ Result: <!-- IMAGE -->
   </div>
     <h2>Denotative Description (Dimensions, Materials, Technique)</h2>
      <pre>
-PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
 PREFIX arco-den:&lt;https://w3id.org/arco/ontology/denotative-description/>
 PREFIX arco-cd:&lt;https://w3id.org/arco/ontology/context-description/>
@@ -469,89 +469,84 @@ WHERE {
   VALUES (?dummy) { (1) }
 }
   </pre>
+    Result:  <!-- IMAGE -->
+    <div class="img-container"> 
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20denotative%20description%20result.png">
+    </div>
 <h2>Context Description (Authorship, Conservation)</h2>
 <pre>
-PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/&gt;>
-PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
-PREFIX arco-den:&lt;https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core:&lt;<https://w3id.org/arco/ontology/core/>
 PREFIX arco-cd:&lt;https://w3id.org/arco/ontology/context-description/>
 PREFIX l0:&lt;https://w3id.org/italia/onto/l0/>
-PREFIX tiapit:&lt;https://w3id.org/italia/onto/TI/>
+PREFIX tiapit:&lt;<https://w3id.org/italia/onto/TI/>
 PREFIX clvapit:&lt;https://w3id.org/italia/onto/CLV/>
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/>
 PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#>
 
 CONSTRUCT {
-  # Link to measurement collection
+  # Authorship attribution
   <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652> 
-      arco-core:hasMeasurementCollection <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement-collection> .
+      arco-core:hasAuthor <https://w3id.org/arco/resource/agent/DomenicoTibaldi> .
   
-  # Measurement collection details
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement-collection> 
-      a arco-core:MeasurementCollection ;
-      arco-den:hasMeasurement <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/height> ;
-      arco-den:hasMeasurement <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/arch-diameter> .
+  <https://w3id.org/arco/resource/agent/DomenicoTibaldi> 
+      a arco-cd:Author ;
+      foaf:name "Domenico Tibaldi" ;
+      l0:preferredLabel "Domenico Tibaldi (il Riccio)"@it ;
+      arco-cd:attribution "Progettista della porta sulla base dei piani di modernizzazione delle difese cittadine"@it ;
+      arco-cd:hasRole <https://w3id.org/arco/resource/agent/DomenicoTibaldi/role/architect> .
   
-  # Height measurement
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/height> 
-      a arco-den:Height ;
-      arco-den:hasValue <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/height/value> ;
-      l0:preferredLabel "Altezza della struttura"@it .
+  <https://w3id.org/arco/resource/agent/DomenicoTibaldi/role/architect> 
+      a arco-cd:Role ;
+      l0:preferredLabel "Architetto"@it .
   
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/height/value> 
-      a tiapit:Metre ;
-      tiapit:hasMeasurementValue "12"^^xsd:decimal .
-  
-  # Arch diameter measurement
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/arch-diameter> 
-      a arco-den:Width ;
-      arco-den:hasValue <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/arch-diameter/value> ;
-      l0:preferredLabel "Diametro interno dell'arco"@it .
-  
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/measurement/arch-diameter/value> 
-      a tiapit:Metre ;
-      tiapit:hasMeasurementValue "4.5"^^xsd:decimal .
-  
-  # Materials
+  # Conservation intervention
   <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652> 
-      arco-den:hasMaterial <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/material/brick> ;
-      arco-den:hasMaterial <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/material/sandstone> .
+      arco-cd:hasTechnicalStatus <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/technical-status> .
   
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/material/brick> 
-      a arco-den:Material ;
-      l0:preferredLabel "Mattone"@it ;
-      rdfs:comment "Laterizio per la struttura principale"@it .
+  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/technical-status> 
+      a arco-cd:TechnicalStatus ;
+      arco-cd:hasIntervention <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/intervention/2018> ;
+      l0:preferredLabel "Stato di conservazione (2018)"@it .
   
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/material/sandstone> 
-      a arco-den:Material ;
-      l0:preferredLabel "Pietra arenaria"@it ;
-      rdfs:comment "Pietra per elementi decorativi e archivolto"@it .
+  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/intervention/2018> 
+      a arco-cd:Intervention ;
+      l0:preferredLabel "Restauro conservativo (2018)"@it ;
+      arco-cd:hasInterventionType <https://w3id.org/arco/resource/InterventionType/restoration> ;
+      tiapit:atTime <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/time-interval/2018> ;
+      rdfs:comment "Intervento di consolidamento strutturale, pulitura delle superfici, stuccatura e trattamento delle grate metalliche"@it .
   
-  # Technique
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652> 
-      arco-den:hasTechnique <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/technique/masonry> .
+  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/time-interval/2018> 
+      a tiapit:TimeInterval ;
+      tiapit:hasIntervalDate "2018-01-01"^^xsd:date ;
+      tiapit:hasIntervalDate "2018-12-31"^^xsd:date .
   
-  <https://w3id.org/arco/resource/HistoricalOrArtisticProperty/0800241652/technique/masonry> 
-      a arco-den:Technique ;
-      l0:preferredLabel "Muratura"@it ;
-      rdfs:comment "Costruzione in laterizio e pietra con tecniche di muratura portante"@it .
+  <https://w3id.org/arco/resource/InterventionType/restoration> 
+      a arco-cd:InterventionType ;
+      l0:preferredLabel "Restauro conservativo"@it .
 }
 WHERE {
   VALUES (?dummy) { (1) }
 }
 </pre>
+<p>Result:</p> <!-- IMAGE -->
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20context%20description%20result.png">
+    </div>
     <p>Finally, I used ChatGpt with a Zero-shot Chain-of-Thought Prompting to add other specific triples for the properties that I saw were missing:</p>
      <!-- IMAGE -->
     <div class="img-container">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20prompt%20CONSTRUCT%200%20SHOT.png">
     </div>
-     <pre>PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
-PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
-PREFIX arco:  <http://example.org/arco#>
-PREFIX res:   <http://example.org/resource/>
-PREFIX mat:   <http://example.org/material/>
+     <pre>
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#>
+PREFIX arco:&lt;http://example.org/arco#>
+PREFIX res:&lt;http://example.org/resource/>
+PREFIX mat:&lt;http://example.org/material/>
 
 CONSTRUCT {
   # Main monument
@@ -564,8 +559,8 @@ CONSTRUCT {
     arco:hasStyle "military renaissance architecture"@en ;
     arco:hasStyle "architettura militare rinascimentale"@it ;
     arco:hasMaterial mat:brick, mat:sandstone ;
-    arco:hasRestoration res:Porta_Zamboni_0800241652/restoration/2007-2009 ;
-    arco:hasFeature res:Porta_Zamboni_0800241652/drawbridge/1354 .
+    arco:hasRestoration res:Porta_Zamboni_0800241652restoration2007-2009 ;
+    arco:hasFeature res:Porta_Zamboni_0800241652drawbridge1354 .
 
   # Materials
   mat:brick
@@ -579,7 +574,7 @@ CONSTRUCT {
     skos:prefLabel "arenaria"@it .
 
   # Restoration event
-  res:Porta_Zamboni_0800241652/restoration/2007-2009
+  res:Porta_Zamboni_0800241652restoration2007-2009
     a arco:RestorationEvent ;
     arco:startDate "2007"^^xsd:gYear ;
     arco:endDate "2009"^^xsd:gYear ;
@@ -587,7 +582,7 @@ CONSTRUCT {
     rdfs:label "Restauro (2007–2009)"@it .
 
   # Drawbridge feature
-  res:Porta_Zamboni_0800241652/drawbridge/1354
+  res:Porta_Zamboni_0800241652drawbridge1354
     a arco:Drawbridge ;
     arco:constructionYear "1354"^^xsd:gYear ;
     rdfs:label "Drawbridge (1354)"@en ;
@@ -597,10 +592,15 @@ WHERE {
   {}  # empty pattern → constructs once
 }
 </pre>
-  INSERIRE IMMAGINE
-  <p>As we can see, even though I used a chain-of-thought prompt, Chatgpt only made a short introduction about the element that I wanted to represent and a conclusion of the main features of the query, without a real description of its reasoning process.
-I tried to execute this query in Yasgui because personally, being in different colours, the visualisation is better and most importantly, It’s easier to find possible mistakes (they are in red) so that I can quickly correct them manually. In fact, the mistake was the “/” before restoration, drawbridge, 2007 and 1354:
+    Result: <!-- IMAGE -->
+    <div class="img-container">
+    <img src="
+    <!-- IMAGE -->
+    <div class="img-container">
+ img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20caratteristiche.png">
+  <p>As we can see, even though I used a chain-of-thought prompt, Chatgpt only made a short introduction about the element that I wanted to represent and a conclusion of the main features of the query, without a real description of its reasoning process. At first, the query that I obtained was incorrect, so I tried to execute It in Yasgui because there the visualisation is better and most importantly, It’s easier to find possible mistakes (they are in red) so that I can quickly correct them manually. In fact, the mistake was the “/” before "restoration", "drawbridge", "2007" and "1354":
 </p>
+      
 
     <h2>Conclusion</h2>
     <p>
