@@ -186,10 +186,6 @@ LIMIT 100
     <div class="img-container">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/risultati%20zamboni.png">
         </div> 
-  <!-- IMAGE -->
-    <div class="img-container"> 
-      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img2.png">
-      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img1.png">
     
     <h2>SPARQL Query 2: DESCRIBE</h2>
     <p>
@@ -206,13 +202,13 @@ WHERE {
 ORDER BY ?s
 LIMIT 200
   </pre>
-
-    <!--div class="img-container">
-      <img src="../img/porta_san_donato_plan.jpg" alt="Plan of Porta San Donato">
-      <p><i>Figure 2: Plan and structural details of Porta San Donato</i></p>
-    </div-->
+    
 <p>After that, I explored the webpage and I noticed that some of the main properties the of the entity were already present, such as information about its layout, design, covering and different kinds of cadastral documentations: https://dati.beniculturali.it/lodview-arco/resource/ArchitecturalOrLandscapeHeritage/0800241652.html</p>
-   INSERIRE IMMAGINE
+     <!-- IMAGE -->
+    <div class="img-container"> 
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img2.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img1.png">
+    </div>
       <h2>SPARQL Query 3:SELECT</h2>
       <p>Therefore, I proceed with a SELECT query, using the OPTIONAL function to see the properties worth describing that can be missing from the knowledge graph. I decided to ask Chatgpt through a 2 shot prompting, and I always specified the Unique Identifier of the entity (0800241652) and the fact that I was working to enrich the ArCo ontology:
 “create a query with the SELECT and OPTIONAL function to see the properties worth describing that can be missing from the knowledge graph of Porta Zamboni (0800241652) in Arco ontology. use these two queries as an example: 
