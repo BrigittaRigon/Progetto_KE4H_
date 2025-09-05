@@ -89,27 +89,28 @@
     <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Screenshot%202025-09-04%20180341%20(1).png" >
       </div>
-    <p>• At the beginning, we didn't find results for Porta San Donato because this entity was called Porta Zamboni in the Arco Ontology:</p>
+    <p>• At the beginning, results couldn't be found for Porta San Donato because this entity was called Porta Zamboni in the Arco Ontology,the solution was to try again using that label:
+</p>
       <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/s%20don%20vs%20zamboni%20link.png" >
       </div> 
       <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20san%20donato%20vs%20zamboni.png" >
       </div>     
-<p>• Some gates do not exist on the ontology, like Porta San Mamolo, we had to apply the CONSTRUCT query to create new information about them.</p>
+<p>• Some gates do not exist on the ontology, like Porta San Mamolo,a CONSTRUCT query was applied to create new information about them.</p>
        <p>• LLM's mistakes in creating queries:</p>
         <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/wrong%20variables.png" >
       </div>    
         <p>‘’The pattern doesn’t contain variables’’ was the most common correction when the result was wrong .</p>
-<p>• When retrieving information about some gate’s properties, a query showed different results from the gate’s page on ArCo and the same query provided boolean flags which contradicted  Virtuoso results.</p>
+<p>• When retrieving information about some gate’s properties, a query showed different results from the gate’s page on ArCo and the same query provided boolean flags which contradicted  Virtuoso results.The most effective way to find information in this case was to verify directly on ArCo's page</p>
   <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/san%20donato%20properties.jpg" >
       </div>  
   <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/boolean.jpg" >
       </div>    
-  <p>•Wrong information about ArCo’s properties given by the LLM's: in some cases we had to provide ArCo’s properties for the LLMs to work properly. It was useful to manually replace some of them and to specify what properties we wanted to be used with their relative IRI’s.</p>  
+  <p>•Wrong information about ArCo’s properties given by the LLM's: it was useful to manually replace some of them and to specify what properties we wanted to be used with their relative IRI’s.</p>  
   <div class="img-container">
     <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/etimology%20wrong%20property.png" >
       </div>  
