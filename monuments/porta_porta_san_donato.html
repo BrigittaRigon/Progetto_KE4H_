@@ -132,26 +132,32 @@ After that, I verified the information with other sources like Wikipedia ( https
     </div>
        <p>The first thing we can notice is that Deepseek says that the name in bolognese is pôrta San Dunè, confirming the description present in Wikipedia, whereas Gemini calls it pôrta San Dunà. That’s why it’s always essential to compare different sources of information. The building year and the year in which the is confirmed in both sites, but the restoration year is different from Deepseek’s answer (2015) to Gemini’s answer and Wikipedia (2007 and 2009). Also, I tried to verify the fact that it was commissioned by Pope Julius II but I didn’t find any site that confirmed that. Finally, another interesting and reliable information is that a drawbridge was added in 1354.</p>
        
-    <h2>SPARQL Query 1: Retrieve the Gate</h2>
+    <h2>SPARQL Query 1: SELECT DISTINCT to retrieve the information concerning the Gate</h2>
     <p>
-      The following query searches for the monument labeled as 
-      <b>Porta San Donato</b> in Bologna.
+      The following query searches for architectural heritage labeled as 
+      <b>Porta San Donato</b> in Bologna:
     </p>
-    <pre>
-PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
-PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+    <pre>PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX cis:  <http://dati.beniculturali.it/cis/>
 
 SELECT DISTINCT ?porta ?label
 WHERE {
   ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
-  ?porta rdfs:label ?label .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
   FILTER (REGEX(STR(?label), "Porta San Donato", "i"))
   FILTER (REGEX(STR(?label), "Bologna", "i"))
 }
 LIMIT 100
-    </pre>
+</pre>
+  <p>This query didn't give any results. After further research, I discovered that the Gate exists on the ArCo ontology, but it's called with its alternative name (Porta Zamboni). </p>
 
     <h2>SPARQL Query 2: DESCRIBE</h2>
     <p>
