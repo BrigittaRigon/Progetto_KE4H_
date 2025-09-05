@@ -96,7 +96,7 @@ located at the very beginning of Via Zamboni, which leads to the university area
       <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
       <tr><th>Location</th><td>Bologna, Emilia-Romagna, Italy</td></tr>
       <tr><th>Alternative name</th><td>Porta Zamboni</td></tr>
-      <tr><th>Construction</th><td>Medieval period</td></tr>
+      <tr><th>Construction</th><td>13th century</td></tr>
     </table>
 
     <h2>USE OF LLMS TO FIND OUT ABOUT ESSENTIAL INFORMATION</h2>
@@ -137,7 +137,8 @@ After that, I verified the information with other sources like Wikipedia ( https
       The following query searches for architectural heritage labeled as 
       <b>Porta San Donato</b> in Bologna:
     </p>
-    <pre>PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    <pre>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
@@ -157,12 +158,39 @@ WHERE {
 }
 LIMIT 100
 </pre>
-  <p>This query didn't give any results. After further research, I discovered that the Gate exists on the ArCo ontology, but it's called with its alternative name <b>Porta Zamboni</b>: </p>
+  <p>This query didn't give any results. Since during my research I discovered that the gate has an alternative name (<b>Porta Zamboni</b>), I tried again using that label: </p>
+
+  <pre>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX cis:  <http://dati.beniculturali.it/cis/>
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
+  FILTER (REGEX(STR(?label), "Porta Zamboni", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+</pre>
+  <p>Result:</p>
+  <!-- IMAGE -->
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/risultati%20zamboni.png">
+        </div> 
   <!-- IMAGE -->
     <div class="img-container"> 
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img2.png">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img1.png">
-
+    
     <h2>SPARQL Query 2: DESCRIBE</h2>
     <p>
       To collect all RDF triples related to this monument, the following 
