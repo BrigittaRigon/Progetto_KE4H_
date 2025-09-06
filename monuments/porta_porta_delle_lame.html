@@ -173,15 +173,15 @@ Deepseek provided me a working query because I added the ArCo’s properties of 
    
    <pre>
   
-PREFIX arco-cons: <https://w3id.org/arco/ontology/construction-description/>
-PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
-PREFIX arco-event: <https://w3id.org/arco/ontology/cultural-event/>
-PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description/&gt;
+PREFIX arco-den: &lt;ttps://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX arco-event: &lt;https://w3id.org/arco/ontology/cultural-event/&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
 
 CONSTRUCT {
-  <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
+  &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
     arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
     arco-cons:hasArchitecturalOrder "baroque"@en ;
     arco-den:hasMaterial "brick"@en ;
