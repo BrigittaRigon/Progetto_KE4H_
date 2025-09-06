@@ -70,99 +70,80 @@
     </ul>
   </nav>
 
-
   <section>
-    <h1>Methodology by Example: ArCo & Cultural Heritage</h1>
+    <h1>Queries Used</h1>
+    <p>The queries used have been fundamental for querying the available data and obtaining specific information about the monuments analyzed. Here are three main examples, along with explanations of their purpose and how they work.</p>
 
-    <h2>Project Idea</h2>
+    <h2>SELECT DISTINCT Query</h2>
     <p>
-      Use a knowledge graph (any) as subject of the project. Here, the
-      <strong>ArCo Knowledge Graph</strong> is used as an example to showcase
-      methodology: discover a topic, run SPARQL queries, use LLMs for enrichment,
-      verify results, and publish findings on a GitHub-based website.
+      This query is used to extract a unique set of results (without duplicates) from an RDF dataset. In our case, it is used to search for monuments of type <code>ArchitecturalOrLandscapeHeritage</code> that have certain labels, denominations, or titles, filtering only those that contain the name of a specific gate and the city of Bologna.
     </p>
-
-    <h2>ArCo Ontology Overview</h2>
-    <ul>
-      <li><strong>ArCo</strong> is a <em>network of ontologies</em> for Italian cultural heritage.</li>
-      <li><strong>Core ontology</strong>: general concepts (Agent, CulturalEntity, Location).</li>
-      <li><strong>Denotative Description</strong>: measurable/cataloguing attributes (dimension, material, technique).</li>
-      <li><strong>Context Description</strong>: contextual attributes (authorship, subject, conservation, iconclass).</li>
-      <li>Other modules cover specific domains (events, instruments, etc.).</li>
-    </ul>
-
-    <h2>Workflow / Methodology</h2>
-    <ol>
-      <li>Explore ontologies + KG (ArCo docs, modules).</li>
-      <li>Identify useful classes/properties (e.g. <code>a-cd:Subject</code>, <code>a-cd:hasSubject</code>).</li>
-      <li>Form SPARQL queries against <a href="https://dati.cultura.gov.it/sparql" target="_blank">ArCo endpoint</a>.</li>
-      <li>Select a topic (e.g. artworks with same subject or iconclass).</li>
-      <li>Use LLMs to extract information & propose triples.</li>
-      <li>Verify if information exists in ArCo before adding.</li>
-      <li>Create enriched triples and document provenance.</li>
-      <li>Publish results on GitHub Pages.</li>
-    </ol>
-
-    <h2>Example Query: Tondo Doni (Michelangelo)</h2>
+    <p><strong>Example taken from Porta Maggiore:</strong></p>
     <pre>
-PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
-SELECT DISTINCT ?x ?l ?p ?o
-WHERE {
-  ?x a arco:HistoricOrArtisticProperty ;
-     rdfs:label ?l ;
-     ?p ?o .
-  FILTER(regex(str(?l), "tondo doni", "i"))
-}
-    </pre>
-
-    <h2>Subjects in ArCo (Q1)</h2>
-    <pre>
-PREFIX a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt;
+PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-
-SELECT DISTINCT ?subject ?label
-WHERE {
-  ?subject a a-cd:Subject ;
-           rdfs:label ?label .
-}
-LIMIT 20
-    </pre>
-
-    <h2>Artworks Sharing Same Iconclass (Q2)</h2>
-    <pre>
-PREFIX a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt;
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX cis:  &lt;http://dati.beniculturali.it/cis/&gt;
 
-SELECT DISTINCT ?cp1 ?cp1label ?cp2 ?cp2label ?code
+SELECT DISTINCT ?porta ?label
 WHERE {
-  ?cp1 a arco:CulturalProperty ;
-       a-cd:iconclassCode ?code ;
-       rdfs:label ?cp1label .
-  ?cp2 a arco:CulturalProperty ;
-       a-cd:iconclassCode ?code ;
-       rdfs:label ?cp2label .
-  FILTER(?cp1 != ?cp2)
-  FILTER(str(?code) != "")
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
+  FILTER (REGEX(STR(?label), "Porta Maggiore", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
 }
 LIMIT 100
     </pre>
 
-    <h2>DF Example (using ArCo Ontology)</h2>
+    <h2>DESCRIBE Query</h2>
+    <p>
+      The <code>DESCRIBE</code> query is used to retrieve all RDF information related to a specific resource. In this case, starting from a unique identifier, it returns all properties and values related to the monument in question, enabling a detailed description of the entity.
+    </p>
+    <p><strong>Example taken from Porta San Donato:</strong></p>
     <pre>
-@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
-@prefix a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt; .
-@prefix ex: &lt;http://example.org/&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 
-ex:Tondo_Doni a arco:CulturalProperty ;
-  a-cd:hasAuthor "Michelangelo" ;
-  a-cd:hasSubject ex:Sacra_Famiglia ;
-  rdfs:label "Tondo Doni" .
+DESCRIBE ?s
+WHERE {
+  ?s arco:uniqueIdentifier "0800241601" .
+}
+ORDER BY ?s
+LIMIT 200
+    </pre>
 
-ex:Sacra_Famiglia a a-cd:Subject ;
-  rdfs:label "Sacra Famiglia" .
+    <h2>CONSTRUCT Query</h2>
+    <p>
+      The <code>CONSTRUCT</code> query is used to build new RDF graphs from existing data. It is useful for reorganizing, enriching, or presenting information in a format different from the original. In the example, it constructs a graph that describes historical elements, materials, events, and architectural features related to the gate.
+    </p>
+    <p><strong>Example taken from Porta Delle Lame:</strong></p>
+    <pre>
+PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description&gt;
+PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
+PREFIX arco-event: &lt;https://w3id.org/arco/ontology/cultural-event&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1&gt;
+
+CONSTRUCT {
+  arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
+  arco-cons:hasArchitecturalOrder "baroque"@en ;
+  arco-den:hasMaterial "brick"@en ;
+  arco-event:hasRelatedEvent "battle of Porta Lame during WWII"@en ;
+  arco-core:describes "the latin name Lame refers to swamps"@en ;
+  arco-core:isPartOf "Bologna's city gates"@en ;
+  arco-den:AffixedElement "two lions"@en .
+}
+WHERE {
+  FILTER (true)
+}
     </pre>
   </section>
+
 </body>
 </html>
