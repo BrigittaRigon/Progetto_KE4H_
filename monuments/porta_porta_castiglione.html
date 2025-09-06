@@ -71,298 +71,110 @@
   </section>
 </body>
 </html>
-Porta Castiglione, Bologna
-Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the
-13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di
-Savena, which powered numerous mills, gave it both military importance (with a tower and
-drawbridge) and economic relevance. A symbol of Bologna’s dual medieval identity: a
-fortified city and a productive center tied to its waterways; it now stands as an architectural
-and cultural testimony to the city’s urban development. I chose to enrich its record because it
-represents a key element of Bologna’s historical and cultural identity: updating its entry
-allows for a more complete representation of the city’s past and strengthens its visibility
-within heritage knowledge graphs.
-1
-st Step: SPARQL queries to find missing information
-DESCRIBE query
-The first step was using a DESCRIBE query to see the properties and objects belonging
-to Porta Castiglione. I found it useful to see if it is already well described or not, and to
-see which properties may be missing.
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porta Castiglione - Bologna</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Porta Castiglione, Bologna</h1>
+
+        <p>
+            Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the
+            13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di
+            Savena, which powered numerous mills, gave it both military importance (with a tower and
+            drawbridge) and economic relevance. 
+        </p>
+        <p>
+            A symbol of Bologna’s dual medieval identity — a fortified city and a productive center tied to its waterways —
+            it now stands as an architectural and cultural testimony to the city’s urban development.  
+            This entry was enriched because Porta Castiglione represents a key element of Bologna’s historical and cultural identity:
+            updating its record allows for a more complete representation of the city’s past and strengthens its visibility within heritage knowledge graphs.
+        </p>
+
+        <h2>Step 1: SPARQL queries to find missing information</h2>
+        <h3>DESCRIBE query</h3>
+        <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 DESCRIBE
-<https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613>
-Result: https://tinyurl.com/2r9xtap6
-It appears that Porta Castiglione is already well-described in the ArCo ontology, but we
-could definitely enrich its profile with some interesting additional information, such as the
-ancient name it was known by and the ring of walls it belongs to.
-SELECT query
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
+        </pre>
+        <p>Result: <a href="https://tinyurl.com/2r9xtap6" target="_blank">https://tinyurl.com/2r9xtap6</a></p>
+        <p>
+            It appears that Porta Castiglione is already well described in the ArCo ontology, but it could be enriched
+            with additional information, such as its ancient name and the wall ring it belongs to.
+        </p>
+
+        <h3>SELECT query</h3>
+        <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 SELECT ?ancientName ?wallRing
 WHERE {
- <https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613> ?p ?o .
+ &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt; ?p ?o .
 
  OPTIONAL {
-<https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613>
+&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
 arco:hasAncientName ?ancientName. }
  OPTIONAL {
-<https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613>
+&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
 arco:isPartOfWallRing ?wallRing. }
 }
 LIMIT 10
-Result: https://tinyurl.com/2f9f9m8c
-It looks like these two pieces of information are not present in the ArCo ontology.
-2
-nd Step: How LLMs can enhance the ArCo knowledge graph
-I used three different LLMs, ChatGPT, DeepSeek, and Gemini, to help me find the missing
-information. I asked each model the same question and then evaluated and compared their
-answers.
-The first question was a zero-shot prompt:
-“Tell me the ancient name Porta Castiglione used to be known as and the ring of walls it
-belongs to”
-ChatGPT’s answer:
-ChatGPT provided accurate answers, though they lacked in-depth detail. The model did,
-however, cite its sources and include relevant images, which helped to support the
-information provided.
-GEMINI’s answer:
-GEMINI’s answer was the shortest one. Although the model provided correct answers, they
-tended to be brief and not very detailed. This can indeed be a positive aspect when someone
-is trying to retrieve a specific piece of information and needs a concise answer, but it can also
-be a drawback if more context or explanation is needed. It didn’t mention its sources.
-Deep Seek’s answer:
-Ancient Name and Wall Ring Details
-Even today, Bolognese often use the two names interchangeably, though "Porta Saragozza" remains
-deeply ingrained in the local identity, especially for the surrounding neighborhood.
-2. The Ring of Walls: The Cerchia dei Torresotti (Second Walls)
-This is the crucial part of your question. Porta Castiglione/Saragozza was a main gate in Bologna's second
-medieval circle of walls, built in the 12th century (specifically, begun around 1176).
-이 Common Names: This set of walls is most famously known as the Cerchia dei Torresotti. The name
-"Torresotti" comes from the small towers (torresotte) that guarded the city's gates. These gates were
-often built under the towers, hence the name.
-Structure: Unlike the later, larger third walls, the second circle was not as high or imposing. It was built
-at a time of rapid city expansion and increasing civic pride. Many sections of these walls were
-incorporated into later buildings as the city grew.
-Visibility Today: You can still see clear remnants of this second circle. The best examples are the four
-surviving torresotti gates themselves, which now stand in the middle of busy streets, stranded as the
-walls were demolished:
-• Porta delle Lame (the most intact)
-Message DeepSeek
-DeepThink Search 0
-Al-generated, for reference only
-Ancient Name and Wall Ring Details
-Of course. You've asked an excellent question that touches on the layered history of Bologna.
-The ancient name for what is now Porta Castiglione was Porta Saragozza.
-It belongs to the Cerchia dei Torresotti (or "dei Mille"), which is also commonly known as the second
-circle of walls (la seconda cerchia).
-Here is a more detailed breakdown:
-1. The Ancient Name: Porta Saragozza
-• Origin: The gate was originally constructed in the 13th century and named after the main road it
-served, the Via Saragozza. This road was an important route leading out of the city towards the west
-and eventually to the hilltop Sanctuary of the Madonna di San Luca.
-Name Change: It was renamed Porta Castiglione in the 16th century (sometime after 1508) because
-the road it served was also known as Strada Castiglione, which led to the nearby town of Castiglione
-dei Pepoli.
-Even today, Bolognese often use the two names interchangeably, though "Porta Saragozza" remains
-Message DeepSeek
-DeepThink Search
-Al-generated, for reference only
-0
-Deep Seek’s answer was definitely the longest and most accurate. Not only did it provide the
-correct answers, but it also delved deeper into the content, adding additional interesting
-details and a useful final summary for memorization. However, it didn’t mention its sources.
-Sources:
-- bibliotecasalaborsa.it (https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-dibologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001)
-- bolognawelcome.com (https://www.bolognawelcome.com/it/blog/le-porte-dibologna)
-- originebologna.com (https://www.originebologna.com/strade/strada-castiglione/portacastiglione/)
-Few-shots chain-of-thought prompt
-I then used a CONSTRUCT query to add this information to the ArCo ontology. I asked
-ChatGPT and Deep Seek to help me create a CONSTRUCT query through a few-shots
-chain-of-thought prompt.
-“Hi, I need to enrich the entity 0800241636 (Porta Castiglione in Bologna) in the ArCo
-knowledge graph with some new triplets. I noticed that in the page the following
-information is missing:
-- The ancient name Porta Castiglione used to be known as (answer: Porta dei
-Canali);
-- The ring of walls it belongs to (answer: the third one).
-Can you create a construct query for ArCo with all this information, following these two
-examples:
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX clv: <https://w3id.org/italia/onto/CLV/>
-PREFIX cis: <http://dati.beniculturali.it/cis/>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX l0: <https://w3id.org/italia/onto/l0/>
-CONSTRUCT {
- ?museum a cis:CulturalInstitution ;
- l0:name "Uffizi Gallery" ;
- clv:hostsEvent ?event .
+        </pre>
+        <p>Result: <a href="https://tinyurl.com/2f9f9m8c" target="_blank">https://tinyurl.com/2f9f9m8c</a></p>
+        <p>
+            These two pieces of information are not present in the ArCo ontology.
+        </p>
 
- ?event a cis:CulturalEvent ;
- l0:name ?eventName ;
- cis:involvesCulturalEntity ?artwork .
+        <h2>Step 2: How LLMs can enhance the ArCo knowledge graph</h2>
+        <p>
+            To enrich the entity, I compared the answers of three different LLMs (ChatGPT, Gemini, DeepSeek).
+        </p>
 
- ?artwork a a-cd:CulturalProperty ;
- l0:name ?title ;
- a-cd:hasAuthor ?artist .
+        <h3>ChatGPT</h3>
+        <p>
+            Accurate, with sources and images, but not very detailed.
+        </p>
 
- ?artist l0:name ?artistName .
-}
-WHERE {
- ?museum a cis:CulturalInstitution ;
- rdfs:label "Uffizi" .
+        <h3>Gemini</h3>
+        <p>
+            Concise, correct, but lacked sources and deeper context.
+        </p>
 
- ?event a cis:CulturalEvent ;
- clv:hasSpatialCoverage ?museum ;
- rdfs:label ?eventName ;
- cis:involvesCulturalEntity ?artwork .
+        <h3>DeepSeek</h3>
+        <p>
+            The most complete and detailed. Provided additional historical context and useful memorization cues,
+            although without sources.
+        </p>
 
- ?artwork a a-cd:CulturalProperty ;
- rdfs:label ?title ;
- a-cd:hasAuthor ?artist .
+        <h2>Step 3: Adding new information</h2>
+        <p>
+            New details were integrated into ArCo:  
+            – Ancient name: <b>Porta dei Canali</b>  
+            – Wall ring: <b>the third circle of walls</b>  
+            – Bolognese name: <b>Pôrta Castión</b>  
+        </p>
+        <p>
+            Example CONSTRUCT queries were created (see external links):  
+            <a href="https://tinyurl.com/3za3nwsd" target="_blank">ChatGPT’s solution</a> | 
+            <a href="https://tinyurl.com/mw7k7r3y" target="_blank">DeepSeek’s solution</a> | 
+            <a href="https://tinyurl.com/32srvphf" target="_blank">ChatGPT (Bolognese name)</a> | 
+            <a href="https://tinyurl.com/aweab628" target="_blank">DeepSeek (Bolognese name)</a>
+        </p>
 
- ?artist rdfs:label ?artistName .
+        <h2>Sources</h2>
+        <ul>
+            <li><a href="https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-dibologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001" target="_blank">Biblioteca Salaborsa</a></li>
+            <li><a href="https://www.bolognawelcome.com/it/blog/le-porte-dibologna" target="_blank">Bologna Welcome</a></li>
+            <li><a href="https://www.originebologna.com/strade/strada-castiglione/portacastiglione/" target="_blank">Origine Bologna</a></li>
+            <li><a href="https://www.bulgnais.com/manuale/lessico-fraseologia.html" target="_blank">Bulgnais.com</a></li>
+        </ul>
+    </div>
+</body>
+</html>
 
- FILTER(REGEX(?artistName, "Leonardo da Vinci|Michelangelo|Raffaello", "i"))
-}
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX l0: <https://w3id.org/italia/onto/l0/>
-PREFIX clv: <https://w3id.org/italia/onto/CLV/>
-PREFIX cis: <http://dati.beniculturali.it/cis/>
-CONSTRUCT {
- ?festival a cis:CulturalEvent ;
- l0:name ?festivalName ;
- clv:hasLocation ?city .
-
- ?city a cis:GeographicalFeature ;
- l0:name ?cityName .
-}
-WHERE {
- ?festival a cis:CulturalEvent ;
- rdfs:label ?festivalName ;
- clv:hasLocation ?city .
-
- ?city a cis:GeographicalFeature ;
- rdfs:label ?cityName .
-
- FILTER(REGEX(?festivalName, "Jazz|Rock|Classical", "i"))
-}
-Let’s think step by step.”
-ChatGPT’s answer:
-Solution: https://tinyurl.com/3za3nwsd
-Deep Seek’s answer:
-The initial attempt failed as an empty turtle.
-Then, we managed to find a solution.
-Step 3: The Critical Discovery - The Graph
-Our initial queries failed because they were looking for the resource in the default graph. Your diagnostic
-query provided the crucial missing context:
-turtle
-res:value ns0:data
-Copy Download
-This translates to: The resource was found in the graph named <https://w3id.org/arco/data>
-In a SPARQL endpoint, data is often segmented into named graphs (like folders on a computer). We
-needed to add this "address" to our query.
-Step 4: Integrating the Graph Context
-We had to modify our template to place the new triples into the correct "folder" or graph. We did this by
-wrapping the entire template in a GRAPH statement.
-Initial Template:
-sparql
-Ancient Name and Wall Ring Details
-CopyDownload
-CONSTRUCT {
-}
-<https://w3id.org/arco/resource/Architectural0rLandscapeHeritage/0800241636>
-arco:hasHistoricalOrArtisticName "Porta dei Canali"@it;
-arco:isPart0f <https://w3id.org/arco/resource/MonumentalComplex/ThirdWallsOfBologna>
-<https://w3id.org/arco/resource/MonumentalComplex/ThirdWallsOfBologna>
-rdf:type arco:MonumentalComplex;
-rdfs:label "Terza Cerchia di Mura di Bologna"@it.
-arco:hasHistoricalOrArtisticName was chosen as the most appropriate property for an ancient
-name.
-arco:isPartof was chosen to link the gate to the wall structure.
-A new URI was invented for the wall structure following the ArCo pattern.
-The new wall resource is given a type (rdf:type) and labels for clarity.
-Ancient Name and Wall Ring Details
-Step 1: Understanding the Goal
-The objective was to create a set of new facts (triples) about the resource
-https://w3id.org/arco/resource/Architectural0rLandscapeHeritage/0800241636:
-1. Its ancient name is "Porta dei Canali".
-2. It is part of the third circle of walls (a new entity we also need to define).
-Step 2: The Core Structure - The CONSTRUCT Template
-The CONSTRUCT clause is like a template for the new data we want to create. We started by outlining this
-template using the correct ArCo ontology properties and the resource's URI.
-Step 6: Final Assembly
-Putting it all together:
-1. PREFIXes: Declared for readability.
-2. CONSTRUCT { GRAPH { ... } }: The template for the new data, targeted at the correct named graph.
-3. WHERE { GRAPH { ... }}: The validation pattern, also targeted at the correct named graph.
-The final query is a precise instruction:
-"In the graph named <https://w3id.org/arco/data>, if the resource 0800241636 exists, then add
-these two new facts about it and also create this new description for the third walls."
-This step-by-step process-from building a template, to incorporating the critical graph context, to adding
-a validation step-is how we arrived at a query that should finally execute successfully and no longer
-return an empty result.
-Final WHERE Clause:
-sparql
-WHERE {
-Copy Download
-GRAPH <https://w3id.org/arco/data> { // <- Look in the specific graph
-<https://w3id.org/arco/resource/Architectural0rLandscapeHeritage/0800241636> ?p ?o
-}
-}
-Logic: "For the resource in question, if you can find any triple (?p ?o) where it is the subject, then
-proceed to construct the new triples about it."
-This ensures the query doesn't run on an empty resource and binds the operation to the successful finding
-of that resource in its known location.
-Ancient Name and Wall Ring Details
-Modified CONSTRUCT Clause:
-sparql
-CONSTRUCT
-GRAPH <https://w3id.org/arco/data> { // <- NEW: Target the specific graph
-// (The original template goes here)
-}
-CopyDownload
-}
-Step 5: Ensuring a Valid Match - The WHERE Clause
-A CONSTRUCT query must have a WHERE clause to run. The purpose of this clause is to find data that
-validates the need to construct the new triples. We needed a pattern that would:
-1. Find our specific resource.
-2. Only find it if it exists in the correct graph.
-We used the most basic possible pattern: find any property (?p) and any object (?o) for our subject. This
-is a simple existence check.
-Solution: https://tinyurl.com/mw7k7r3y
-Zero-shots chain-of-thought prompt
-Later, I decided to add one more information, that was missing in the ArCo ontology, that is
-the Bolognese name of Porta Castiglione: Pôrta Castión (source:
-https://www.bulgnais.com/manuale/lessico-fraseologia.html). Therefore, I asked this with a
-zero-shots chain of thought.
-“Hi, can you help me enrich the ArCo entity of Porta Castiglione in Bologna (0800241636)
-using the CONSTRUCT function of SPARQL? I want to add that the Bolognese name is
-Pôrta Castión. Let's think step-by-step.”
-ChatGPT’ s answer:
-Solution: https://tinyurl.com/32srvphf
-Deep Seek’s answer:
-Step 3: Language Tagging
-Ancient Name and Wall Ring Details
-It's crucial to add a language tag to the literal string to specify that this name is in the Bolognese dialect.
-The standard language tag for Bolognese is @bol or @eml (for Emilian-Romagnol). However, these are
-not official ISO 639-1/2 codes.
-The safest and most common practice is to use the more general Italian language tag @it and let the
-name itself imply the dialect, or to use a custom tag. For maximum precision, we can use @it-bol.
-SPARQL and RDF allow this, but its interpretation depends on the system.
-We will use "Pôrta Castión"@it-bol for clarity.
-Step 4: Ensure the Resource Exists in the Target Graph
-Based on our previous conversation, we know this specific resource exists in the named graph
-<https://w3id.org/arco/data> . Our query must target this graph.
-Ancient Name and Wall Ring Details
-Step 1: Define the Goal Precisely
-We want to add a new triple to the existing resource:
-Subject: https://w3id.org/arco/resource/ArchitecturalorLandscapeHeritage/0800241636
-(Porta Castiglione)
-Predicate: A property that means "has a name in Bolognese dialect".
-Object: "Pôrta Castión" (the literal string, with the appropriate language tag).
-Step 2: Choose the Correct Property
-The ArCo ontology may not have a specific property for "dialect name". Therefore, we must choose the
-most appropriate existing property. The best candidate is:
-•arco:hasHistoricalOrArtisticName : This property is used for alternative, historical, or artistic
-names of a cultural property. A name in a local dialect fits this description perfectly.
-A less specific but still valid alternative could be rdfs:label with a specialized language tag, but usinn
-arco:hasHistoricalOrArtisticName is more semantically accurate.
-Solution: https://tinyurl.com/aweab628
