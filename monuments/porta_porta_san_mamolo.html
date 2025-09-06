@@ -1,40 +1,236 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Porta San Mamolo</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-  <nav>
-  <ul>
-    <li><a href="../index.html">🏠 Home</a></li>
-    <li><a href="../methodology.html">Methodology</a></li>
-    <li><a href="../sparql.html">SPARQL Queries</a></li>
-    <li>
-      <a href="#">Monuments ▼</a>
-      <ul>
-        <li><a href="../monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="../monuments/porta_porta_san_felice.html">Porta San Felice</a></li>
-        <li><a href="../monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-        <li><a href="../monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-        <li><a href="../monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-        <li><a href="../monuments/porta_porta_saragozza.html">Porta Saragozza</a></li>
-        <li><a href="../monuments/porta_porta_santisaia.html">Porta Sant'Isaia</a></li>
-        <li><a href="../monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-        <li><a href="../monuments/porta_porta_galliera.html">Porta Galliera</a></li>
-        <li><a href="../monuments/porta_porta_mascarella.html">Porta Mascarella</a></li>
-        <li><a href="../monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-        <li><a href="../monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
-    <li><a href="../challenges.html">Faced Challenges</a></li>
-    <li><a href="../conclusions.html">Conclusions</a></li>
-  </ul>
-</nav>
-  <section>
-    <h1>Porta San Mamolo</h1>
-    <p>Sezione dedicata a Porta San Mamolo. Qui puoi inserire i contenuti relativi.</p>
-  </section>
-</body>
-</html>
+Report: Porta San Mamolo
+Choice of the “porta” and the information to be entered
+Porta San Mamolo
+Construction date: XII century
+Bolognese dialect name: Porta ed San Mamel
+Drawbridge added: 1334
+Demolition: 1903
+Building material: bricks
+Porta San Mamolo was one of Bologna’s city gates, historically significant for controlling the northern entrance. It was demolished in the early 20th century. I decided to enrich its profile using ArCo ontology given its historical and architectural importance.
+
+Verification of the data present on ArCo
+I ran a SELECT query to search for information about Porta San Mamolo, without giving an example (zero shot)
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  
+  { ?porta rdfs:label ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+          ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+          ?den rdfs:label ?label }
+
+  FILTER (REGEX(STR(?label), "Porta", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+
+No results were found, confirming that Porta San Mamolo is not yet present in ArCo.
+
+Adding information with ChatGPT and ArCo properties
+I asked ChatGPT to create CONSTRUCT queries using ArCo ontology to add the missing information, giving it a query construct as an example (one shot).
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX cis:  <http://dati.beniculturali.it/cis/>
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  
+  # vari tipi di label/denominazione
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+          ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+          ?den rdfs:label ?label }
+
+  FILTER (REGEX(STR(?label), "Porta", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+1. Construction
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-cd:constructionPeriod "12th century"@en ;
+    rdfs:label "Porta San Mamolo"@en .
+}
+WHERE {
+  FILTER (true)
+}
+2. Building material
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-den:hasMaterial "brick"@en ;
+    rdfs:label "Porta San Mamolo"@en .
+}
+WHERE {
+  FILTER (true)
+}
+3. Related event (drawbridge in 1334)
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-cd:hasIntervention "In 1334 a drawbridge was added"@en ;
+    rdfs:label "Porta San Mamolo"@en .
+}
+WHERE {
+  FILTER (true)
+}
+4. Dialect name
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    dc:title "pôrta ed San Mamel"@bo ;
+    rdfs:label "pôrta ed San Mamel"@bo .
+}
+WHERE {
+  FILTER (true)
+}
+5. Demolition date
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-core:hasNote "Demolished in 1903"@en ;
+    rdfs:label "Porta San Mamolo"@en .
+}
+WHERE {
+  FILTER (true)
+}
+Explanation of properties of the ArCo ontology: 
+arco-cons:hasConstructionDevelopment: indicates the main construction period (XII century).
+arco-den:hasMaterial: specifies the building material (brick).
+arco-event:hasRelatedEvent: records the addition of the drawbridge in 1334.
+arco-core:describes: stores descriptive information, including the dialect name.
+arco-core:hasNote: records the demolition date.
+
+Adding information with Gemini
+I asked Gemini to create SPARQL CONSTRUCT queries to enrich Porta San Mamolo in ArCo, using the information we collected. This time, I didn’t give the LLM any example (zero shot)
+Construction and dialect name
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX arco-cons: <https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-den: <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-cons:hasConstructionDevelopment "XII century"@en ;
+    arco-core:describes "Bolognese dialect name: Porta ed San Mamel"@en .
+}
+WHERE {
+  FILTER(true)
+}
+
+Drawbridge addition in 1334
+PREFIX arco-event: <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-event:hasRelatedEvent "Drawbridge added in 1334"@en .
+}
+WHERE { FILTER(true) }
+
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-core:hasNote "Demolished in 1903"@en .
+}
+WHERE { FILTER(true) }
+
+3. Material
+PREFIX arco-ma: <https://w3id.org/arco/ontology/arco-ma/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  <http://data.arco.dumy/resource/ArchitecturalWork/PortaSanMamolo>
+    arco-ma:hasMaterial "brick"@en .
+}
+WHERE {
+  FILTER(true)
+}
+4.  Demolition date
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  <http://data.arco.dumy/resource/ArchitecturalWork/PortaSanMamolo>
+    arco-core:hasNote "Demolished in 1903"@en .
+}
+WHERE {
+  FILTER(true)
+}
+Explanation:
+Gemini generated queries directly using ArCo properties, producing RDF triples readable by Virtuoso.
+Each query corresponds to a distinct type of information: historical, architectural, and descriptive.
+The resulting RDF graph can now be queried, visualized, or further enriched.
+
+ASK and DESCRIBE queries with ChatGPT and Gemini
+ASK query to check demolition:
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+
+ASK {
+  <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+    arco-core:hasNote "Demolished in 1903"@en .
+}
+DESCRIBE query to retrieve all information:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+
+DESCRIBE <https://dati.beniculturali.it/resource/CulturalProperty/0800249999>
+
+The answer to the first query is “false”, as the information are not on the KG yet. On the other hand, the second query is empty.
+
+Comparison with LLMs
+ChatGPT: helped generate CONSTRUCT queries and explanations, using a one shot prompt. Chat GPT uses more general URIs
+Gemini: provided structured queries with proper ArCo URIs and readable RDF triple, without examples (zero shot prompt). Gemini also uses URIs which are more precise
+
+Summary
+Technical Summary: Semantic Enrichment of Porta San Mamolo Using ArCo Ontology
+This work presents the semantic modeling and RDF enrichment of historical data for Porta San Mamolo, a former city gate of Bologna, within the ArCo ontology framework.
+Data Acquisition and Validation
+Historical and architectural metadata were collected, including: construction in the 12th century, Bolognese dialect name “Porta ed San Mamel”, addition of a drawbridge in 1334, demolition in 1903, and building material brick.
+SPARQL SELECT queries confirmed that Porta San Mamolo was absent from the ArCo knowledge graph (KG), validating the need for structured integration.
+RDF Modeling via SPARQL CONSTRUCT
+CONSTRUCT queries were generated to encode key properties:
+Construction period → arco-cons:hasConstructionDevelopment
+Material → arco-den:hasMaterial
+Related event (drawbridge) → arco-event:hasRelatedEvent
+Descriptive information (dialect name) → arco-core:describes
+Demolition date → arco-core:hasNote
+Queries were expressed with canonical ArCo URIs and appropriate language tags (@en, @bo), producing RDF triples compatible with Virtuoso and other triple stores.
+SPARQL Verification Queries
+ASK queries were used to validate the presence of demolition information, returning false.
+DESCRIBE queries confirmed the absence of Porta San Mamolo in the KG, demonstrating the need for insertion.
+LLM-Assisted Query Generation
+ChatGPT produced CONSTRUCT queries via one-shot prompting.
+Gemini generated structured RDF triples using zero-shot prompting, using precise ArCo ontology terms.
+Outcome 
+Porta San Mamolo’s historical, architectural, and descriptive data have been formally represented in RDF, ready for ingestion into the ArCo KG.
+
+
+
