@@ -72,109 +72,153 @@
 </body>
 </html>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porta Castiglione - Bologna</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porta Castiglione - Bologna</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f4f9;
+    color: #333;
+}
+h1, h2, h3 {
+    color: #2c3e50;
+}
+.section {
+    background: #fff;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+pre {
+    background: #eee;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+a {
+    color: #2980b9;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Porta Castiglione, Bologna</h1>
 
-        <p>
-            Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the
-            13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di
-            Savena, which powered numerous mills, gave it both military importance (with a tower and
-            drawbridge) and economic relevance. 
-        </p>
-        <p>
-            A symbol of Bologna’s dual medieval identity — a fortified city and a productive center tied to its waterways —
-            it now stands as an architectural and cultural testimony to the city’s urban development.  
-            This entry was enriched because Porta Castiglione represents a key element of Bologna’s historical and cultural identity:
-            updating its record allows for a more complete representation of the city’s past and strengthens its visibility within heritage knowledge graphs.
-        </p>
+<h1>Porta Castiglione - Bologna</h1>
 
-        <h2>Step 1: SPARQL queries to find missing information</h2>
-        <h3>DESCRIBE query</h3>
-        <pre>
+<div class="section">
+<h2>Descrizione</h2>
+<p>
+Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the 13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di Savena, which powered numerous mills, gave it both military importance (with a tower and drawbridge) and economic relevance. A symbol of Bologna’s dual medieval identity: a fortified city and a productive center tied to its waterways; it now stands as an architectural and cultural testimony to the city’s urban development. I chose to enrich its record because it represents a key element of Bologna’s historical and cultural identity: updating its entry allows for a more complete representation of the city’s past and strengthens its visibility within heritage knowledge graphs.
+</p>
+</div>
+
+<div class="section">
+<h2>1st Step: SPARQL queries to find missing information</h2>
+<h3>DESCRIBE query</h3>
+<p>
+The first step was using a DESCRIBE query to see the properties and objects belonging to Porta Castiglione. I found it useful to see if it is already well described or not, and to see which properties may be missing.
+</p>
+<pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-DESCRIBE
-&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
-        </pre>
-        <p>Result: <a href="https://tinyurl.com/2r9xtap6" target="_blank">https://tinyurl.com/2r9xtap6</a></p>
-        <p>
-            It appears that Porta Castiglione is already well described in the ArCo ontology, but it could be enriched
-            with additional information, such as its ancient name and the wall ring it belongs to.
-        </p>
+DESCRIBE &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
+Result: https://tinyurl.com/2r9xtap6
+</pre>
+<p>It appears that Porta Castiglione is already well-described in the ArCo ontology, but we could definitely enrich its profile with some interesting additional information, such as the ancient name it was known by and the ring of walls it belongs to.</p>
 
-        <h3>SELECT query</h3>
-        <pre>
+<h3>SELECT query</h3>
+<pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 SELECT ?ancientName ?wallRing
 WHERE {
  &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt; ?p ?o .
-
  OPTIONAL {
-&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
-arco:hasAncientName ?ancientName. }
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
+   arco:hasAncientName ?ancientName. }
  OPTIONAL {
-&lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
-arco:isPartOfWallRing ?wallRing. }
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
+   arco:isPartOfWallRing ?wallRing. }
 }
 LIMIT 10
-        </pre>
-        <p>Result: <a href="https://tinyurl.com/2f9f9m8c" target="_blank">https://tinyurl.com/2f9f9m8c</a></p>
-        <p>
-            These two pieces of information are not present in the ArCo ontology.
-        </p>
+Result: https://tinyurl.com/2f9f9m8c
+</pre>
+<p>It looks like these two pieces of information are not present in the ArCo ontology.</p>
+</div>
 
-        <h2>Step 2: How LLMs can enhance the ArCo knowledge graph</h2>
-        <p>
-            To enrich the entity, I compared the answers of three different LLMs (ChatGPT, Gemini, DeepSeek).
-        </p>
+<div class="section">
+<h2>2nd Step: How LLMs can enhance the ArCo knowledge graph</h2>
+<p>
+I used three different LLMs, ChatGPT, DeepSeek, and Gemini, to help me find the missing information. I asked each model the same question and then evaluated and compared their answers.
+</p>
 
-        <h3>ChatGPT</h3>
-        <p>
-            Accurate, with sources and images, but not very detailed.
-        </p>
+<h3>Zero-shot prompt results</h3>
+<p><strong>Question:</strong> “Tell me the ancient name Porta Castiglione used to be known as and the ring of walls it belongs to”</p>
 
-        <h3>Gemini</h3>
-        <p>
-            Concise, correct, but lacked sources and deeper context.
-        </p>
+<p><strong>ChatGPT’s answer:</strong> Accurate answers, lacked in-depth detail, included sources and images.</p>
+<p><strong>Gemini’s answer:</strong> Correct but brief, no sources cited.</p>
+<p><strong>Deep Seek’s answer:</strong> Longest and most accurate. Included detailed historical context:</p>
+<ul>
+<li>Ancient Name: Porta Saragozza</li>
+<li>Ring of Walls: Cerchia dei Torresotti (Second Walls), built in the 12th century, begun around 1176</li>
+<li>Common Names: Gates often under small towers (torresotte)</li>
+<li>Structure: Not as high as later third walls, incorporated into later buildings</li>
+<li>Visibility Today: Some remnants still visible, e.g., Porta delle Lame</li>
+<li>Origins & Name Change: Originally named after Via Saragozza, renamed Porta Castiglione in 16th century after Strada Castiglione</li>
+</ul>
+<p>Sources:</p>
+<ul>
+<li><a href="https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-di-bologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001" target="_blank">Biblioteca Salaborsa</a></li>
+<li><a href="https://www.bolognawelcome.com/it/blog/le-porte-di-bologna" target="_blank">Bologna Welcome</a></li>
+<li><a href="https://www.originebologna.com/strade/strada-castiglione/portacastiglione/" target="_blank">Origine Bologna</a></li>
+</ul>
+</div>
 
-        <h3>DeepSeek</h3>
-        <p>
-            The most complete and detailed. Provided additional historical context and useful memorization cues,
-            although without sources.
-        </p>
+<div class="section">
+<h2>CONSTRUCT Queries</h2>
+<p>
+Used to enrich the ArCo knowledge graph with missing information (ancient name and wall ring):
+</p>
+<pre>
+// Example template
+CONSTRUCT {
+ GRAPH &lt;https://w3id.org/arco/data&gt; {
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241636&gt;
+   arco:hasHistoricalOrArtisticName "Porta dei Canali"@it;
+   arco:isPartOf &lt;https://w3id.org/arco/resource/MonumentalComplex/ThirdWallsOfBologna&gt;.
+   
+   &lt;https://w3id.org/arco/resource/MonumentalComplex/ThirdWallsOfBologna&gt;
+   rdf:type arco:MonumentalComplex;
+   rdfs:label "Terza Cerchia di Mura di Bologna"@it.
+ }
+}
+WHERE {
+ GRAPH &lt;https://w3id.org/arco/data&gt; {
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241636&gt; ?p ?o
+ }
+}
+</pre>
 
-        <h2>Step 3: Adding new information</h2>
-        <p>
-            New details were integrated into ArCo:  
-            – Ancient name: <b>Porta dei Canali</b>  
-            – Wall ring: <b>the third circle of walls</b>  
-            – Bolognese name: <b>Pôrta Castión</b>  
-        </p>
-        <p>
-            Example CONSTRUCT queries were created (see external links):  
-            <a href="https://tinyurl.com/3za3nwsd" target="_blank">ChatGPT’s solution</a> | 
-            <a href="https://tinyurl.com/mw7k7r3y" target="_blank">DeepSeek’s solution</a> | 
-            <a href="https://tinyurl.com/32srvphf" target="_blank">ChatGPT (Bolognese name)</a> | 
-            <a href="https://tinyurl.com/aweab628" target="_blank">DeepSeek (Bolognese name)</a>
-        </p>
+<p>Additional Bolognese dialect name:</p>
+<pre>
+CONSTRUCT {
+ GRAPH &lt;https://w3id.org/arco/data&gt; {
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241636&gt;
+   arco:hasHistoricalOrArtisticName "Pôrta Castión"@it-bol.
+ }
+}
+WHERE {
+ GRAPH &lt;https://w3id.org/arco/data&gt; {
+   &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241636&gt; ?p ?o
+ }
+}
+</pre>
 
-        <h2>Sources</h2>
-        <ul>
-            <li><a href="https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-dibologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001" target="_blank">Biblioteca Salaborsa</a></li>
-            <li><a href="https://www.bolognawelcome.com/it/blog/le-porte-dibologna" target="_blank">Bologna Welcome</a></li>
-            <li><a href="https://www.originebologna.com/strade/strada-castiglione/portacastiglione/" target="_blank">Origine Bologna</a></li>
-            <li><a href="https://www.bulgnais.com/manuale/lessico-fraseologia.html" target="_blank">Bulgnais.com</a></li>
-        </ul>
-    </div>
+</div>
+
 </body>
 </html>
 
