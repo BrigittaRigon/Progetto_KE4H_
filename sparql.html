@@ -28,12 +28,35 @@
   </ul>
 </nav>
   <section>
-    <h1>Query 1</h1>
-    <p>bla bla bla</p>
+    <h1>SPARQL queries</h1>
+    <p>This page shows the SPARQL queries used to extract information about </p>
+    <h2>Query 1</h2>
+    <p>SELECT DISTINCT query with UNION function to try and ask as much information as possible to the portal; we used the FILTER function to ask specific information about architectural elements known as “porta”</p>
+ 
+<pre>PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
+PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
+PREFIX cis:&lt;http://dati.beniculturali.it/cis/>
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+          ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+          ?den rdfs:label ?label }
+
+  FILTER (REGEX(STR(?label), "Porta", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+</pre>
     <h2>Query 2</h2>
     <p>bla bla bla</p>
     <h2>Query 3</h2>
-    <p>bla bla bla</p>
   </section>
 </body>
 </html>
