@@ -5,6 +5,20 @@
   <title>Porta San Mamolo</title>
   <link rel="stylesheet" href="../style.css">
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+      margin-top: 30px;
+    }
+    h2 { color: #4b0082; }
+    h3 { color: #be6cfa; margin-top: 26px; }
+    p { margin-bottom: 10px; }
     pre {
       background: #f3e6ff;
       border-left: 4px solid #6a0dad;
@@ -12,14 +26,7 @@
       overflow-x: auto;
       border-radius: 8px;
       font-size: 14px;
-    }
-    h2 {
-      color: #4b0082;
-      margin-top: 30px;
-    }
-    h3 {
-      color: #be6cfa; 
-      margin-top: 26px; 
+      white-space: pre-wrap;
     }
     .img-container {
       text-align: center;
@@ -53,6 +60,13 @@
     }
     ul { margin-left: 20px; }
     code { font-family: Consolas, monospace; }
+    nav ul { list-style: none; padding-left: 0; }
+    nav ul li { display: inline-block; position: relative; margin-right: 10px; }
+    nav ul li ul { display: none; position: absolute; top: 100%; left: 0; background: #fff; padding: 0; list-style: none; border: 1px solid #ddd; }
+    nav ul li:hover ul { display: block; }
+    nav ul li ul li { display: block; margin: 0; }
+    nav a { text-decoration: none; padding: 5px 10px; display: block; color: #2c3e50; }
+    nav a:hover { background: #6a0dad; color: #fff; }
   </style>
 </head>
 <body>
@@ -80,8 +94,8 @@
   </nav>
 
   <!-- CONTENT -->
-  <section>
-    <h1>Porta San Mamolo</h1>
+  <main>
+    <h1>Semantic Enrichment of Porta San Mamolo Using ArCo Ontology</h1>
 
     <div class="img-container">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Poppi%2C_Pietro_(1833-1914)_-_n-12023-Bologna-Porta-d-Azeglio_gia%CC%80-San-Mamolo.jpg" alt="Porta San Mamolo">
@@ -121,7 +135,7 @@ LIMIT 100
 
     <h2>Adding information with ChatGPT and ArCo properties</h2>
 
-    <h3>SELECT query for labels (one shot example given to ChatGPT)</h3>
+    <h3>SELECT query for labels (one shot example)</h3>
     <pre>
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -260,4 +274,68 @@ WHERE { FILTER(true) }
 
     <h3>Material (Gemini) (CONSTRUCT)</h3>
     <pre>
-PREFIX arco
+PREFIX arco-ma: &lt;https://w3id.org/arco/ontology/arco-ma/&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+CONSTRUCT {
+  &lt;http://data.arco.dumy/resource/ArchitecturalWork/PortaSanMamolo&gt;
+    arco-ma:hasMaterial "brick"@en .
+}
+WHERE { FILTER(true) }
+    </pre>
+
+    <h3>Demolition date (Gemini) (alternate resource)</h3>
+    <pre>
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+CONSTRUCT {
+  &lt;http://data.arco.dumy/resource/ArchitecturalWork/PortaSanMamolo&gt;
+    arco-core:hasNote "Demolished in 1903"@en .
+}
+WHERE { FILTER(true) }
+    </pre>
+
+    <h2>ASK and DESCRIBE queries</h2>
+    <h3>ASK query to check demolition</h3>
+    <pre>
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+
+ASK {
+  &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800249999&gt;
+    arco-core:hasNote "Demolished in 1903"@en .
+}
+    </pre>
+
+    <h3>DESCRIBE query to retrieve all information</h3>
+    <pre>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+
+DESCRIBE &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800249999&gt;
+    </pre>
+
+    <p>The ASK returned <code>false</code> and the DESCRIBE returned empty, confirming the absence of Porta San Mamolo in the KG prior to insertion.</p>
+
+    <h2>Comparison with LLMs</h2>
+    <ul>
+      <li><strong>ChatGPT</strong>: helped generate CONSTRUCT queries and explanations, using a one-shot prompt and somewhat more generic URIs.</li>
+      <li><strong>Gemini</strong>: provided structured queries with canonical ArCo URIs and readable RDF triples using zero-shot prompting.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p><strong>Technical Summary:</strong> Semantic Enrichment of Porta San Mamolo using the ArCo ontology. The dataset includes construction period (12th century), Bolognese dialect name (<em>Porta ed San Mamel</em>), drawbridge addition (1334), demolition date (1903), and material (brick). SPARQL CONSTRUCT queries were prepared for ingestion into the ArCo KG. Verification queries (ASK / DESCRIBE) show the entity was absent before insertion.</p>
+
+    <p>
+      To learn more about the challenges the group and I faced during this project, visit the 
+      <a href="https://brigittarigon.github.io/Progetto_KE4H_/challenges.html">Faced Challenges</a> 
+      section of this website.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+      Porta San Mamolo has been successfully represented with semantic enrichment using ArCo ontology. 
+      The structured dataset allows integration into
+
