@@ -101,14 +101,13 @@
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/Poppi%2C_Pietro_(1833-1914)_-_n-12023-Bologna-Porta-d-Azeglio_gia%CC%80-San-Mamolo.jpg" alt="Porta San Mamolo">
       <p class="caption">Image: Porta San Mamolo (Poppi, Pietro, 1833–1914)</p>
     </div>
-
-    <h2>Historical and Architectural Information</h2>
-    <p><strong>Construction date:</strong> XII century</p>
-    <p><strong>Bolognese dialect name:</strong> Porta ed San Mamel</p>
-    <p><strong>Drawbridge added:</strong> 1334</p>
-    <p><strong>Demolition:</strong> 1903</p>
-    <p><strong>Building material:</strong> bricks</p>
-    <p>
+<h2>General Information</h2>
+    <table>
+      <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
+      <tr><th>Location</th><td>Bologna, Emilia-Romagna, Italy</td></tr>
+      <tr><th>Bolognese name</th><td>Porta ed San Mamel</td></tr>
+      <tr><th>Construction</th><td>12th century</td></tr>
+    </table>
       Porta San Mamolo was one of Bologna’s city gates, historically significant for controlling the northern entrance. 
       It was demolished in the early 20th century. Its profile has been enriched using ArCo ontology given its historical and architectural importance.
     </p>
@@ -326,8 +325,28 @@ DESCRIBE &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800249999&
     </ul>
 
     <h2>Conclusion</h2>
-    <p><strong>Technical Summary:</strong> Semantic Enrichment of Porta San Mamolo using the ArCo ontology. The dataset includes construction period (12th century), Bolognese dialect name (<em>Porta ed San Mamel</em>), drawbridge addition (1334), demolition date (1903), and material (brick). SPARQL CONSTRUCT queries were prepared for ingestion into the ArCo KG. Verification queries (ASK / DESCRIBE) show the entity was absent before insertion.</p>
-
+    <p><strong>Technical Summary:</strong>
+Semantic Enrichment of Porta San Mamolo Using ArCo Ontology
+This work presents the semantic modeling and RDF enrichment of historical data for Porta San Mamolo, a former city gate of Bologna, within the ArCo ontology framework.
+Data Acquisition and Validation
+Historical and architectural metadata were collected, including: construction in the 12th century, Bolognese dialect name “Porta ed San Mamel”, addition of a drawbridge in 1334, demolition in 1903, and building material brick.
+SPARQL SELECT queries confirmed that Porta San Mamolo was absent from the ArCo knowledge graph (KG), validating the need for structured integration.
+RDF Modeling via SPARQL CONSTRUCT
+CONSTRUCT queries were generated to encode key properties:
+Construction period → arco-cons:hasConstructionDevelopment
+Material → arco-den:hasMaterial
+Related event (drawbridge) → arco-event:hasRelatedEvent
+Descriptive information (dialect name) → arco-core:describes
+Demolition date → arco-core:hasNote
+Queries were expressed with canonical ArCo URIs and appropriate language tags (@en, @bo), producing RDF triples compatible with Virtuoso and other triple stores.
+SPARQL Verification Queries
+ASK queries were used to validate the presence of demolition information, returning false.
+DESCRIBE queries confirmed the absence of Porta San Mamolo in the KG, demonstrating the need for insertion.
+LLM-Assisted Query Generation
+ChatGPT produced CONSTRUCT queries via one-shot prompting.
+Gemini generated structured RDF triples using zero-shot prompting, using precise ArCo ontology terms.
+Outcome 
+Porta San Mamolo’s historical, architectural, and descriptive data have been formally represented in RDF, ready for ingestion into the ArCo KG.
     <p>
       To learn more about the challenges the group and I faced during this project, visit the 
       <a href="https://brigittarigon.github.io/Progetto_KE4H_/challenges.html">Faced Challenges</a> 
