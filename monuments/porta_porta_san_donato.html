@@ -215,6 +215,7 @@ LIMIT 200
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img2.png">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/zamboni%20arco%20img1.png">
     </div>
+    <h2>SPARQL Query 3:SELECT and OPTIONAL</h2>
       <p>Therefore, I proceed with a SELECT query, using the OPTIONAL function to see the properties worth describing that can be missing from the knowledge graph. I decided to ask Chatgpt through a 2 shot prompting, and I always specified the Unique Identifier of the entity <b>(0800241652)</b> and the fact that I was working to enrich the ArCo ontology:
 “create a query with the SELECT and OPTIONAL function to see the properties worth describing that can be missing from the knowledge graph of Porta Zamboni (0800241652) in Arco ontology. use these two queries as an example: 
         <pre>
@@ -374,7 +375,7 @@ WHERE {
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/boolean%202.png">
     </div>
     <p>From the table of results, I can notice that these are all relevant missing information. So I started working to enrich different properties. The first try with the CONSTRUCT keyword was a short query to add the name of the gate in Bolognese: </p>
-    <h2>SPARQL Query 3: CONSTRUCT new triples</h2>
+    <h2>SPARQL Query 4: CONSTRUCT new triples</h2>
       <pre>
 PREFIX dc:&lt;http://purl.org/dc/elements/1.1/>
 PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#>
@@ -398,7 +399,7 @@ Result: <!-- IMAGE -->
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20what%20I%20consider%20worth.png">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20prompt%200%20shot%20deepseek%20CONSTRUCT.png">
   </div>
-    <h2>Denotative Description (Dimensions, Materials, Technique)</h2>
+    <h2>SPARQL Query 4.1: CONSTRUCT Denotative Description (Dimensions, Materials, Architectural style)</h2>
      <pre>
 PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core:&lt;https://w3id.org/arco/ontology/core/>
@@ -473,7 +474,7 @@ WHERE {
     <div class="img-container"> 
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20denotative%20description%20result.png">
     </div>
-<h2>Context Description (Authorship, Conservation)</h2>
+<h2>SPARQL Query 4.2: CONSTRUCT Context Description (Authorship attribution, Conservation, restauration)</h2>
 <pre>
 PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
 PREFIX arco-core:&lt;<https://w3id.org/arco/ontology/core/>
@@ -534,6 +535,7 @@ WHERE {
     <div class="img-container">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/SD%20context%20description%20result.png">
     </div>
+    <h2>SPARQL Query 4.3: CONSTRUCT addictional information (construction year, drawbridge)</h2>
     <p>Finally, I used ChatGpt with a Zero-shot Chain-of-Thought Prompting to add other specific triples for the properties that I saw were missing:</p>
      <!-- IMAGE -->
     <div class="img-container">
