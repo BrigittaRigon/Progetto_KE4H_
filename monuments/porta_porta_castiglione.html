@@ -45,64 +45,46 @@
 </head>
 <body>
   <nav>
-  <ul>
-    <li><a href="../index.html">🏠 Home</a></li>
-    <li><a href="../methodology.html">Methodology</a></li>
-    <li><a href="../sparql.html">SPARQL Queries</a></li>
-    <li>
-      <a href="#">Monuments ▼</a>
-      <ul>
-        <li><a href="../monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="../monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-        <li><a href="../monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-        <li><a href="../monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-        <li><a href="../monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-        <li><a href="../monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
-    <li><a href="../challenges.html">Faced Challenges</a></li>
-    <li><a href="../conclusions.html">Conclusions</a></li>
-  </ul>
-</nav>
-  
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../sparql.html">SPARQL Queries</a></li>
+      <li>
+        <a href="#">Monuments ▼</a>
+        <ul>
+          <li><a href="../monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
+          <li><a href="../monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
+          <li><a href="../monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
+          <li><a href="../monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
+          <li><a href="../monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
+          <li><a href="../monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
+        </ul>
+      </li>
+      <li><a href="../challenges.html">Faced Challenges</a></li>
+      <li><a href="../conclusions.html">Conclusions</a></li>
+    </ul>
+  </nav>
+
   <section>
-    <h1>Porta Castiglione</h1>
-    <p>Porta Castiglione, also known as "Porta dei Canali" (Gate of the Canals) </p>
-  </section>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Porta Castiglione - Bologna</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #f9f9f9; }
-        h1, h2, h3, h4 { color: #2c3e50; }
-        pre { background: #eee; padding: 10px; overflow-x: auto; }
-        a { color: #2980b9; }
-    </style>
-</head>
-<body>
+    <h1>Porta Castiglione, Bologna</h1>
+    <p>
+      Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the
+      13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di
+      Savena, which powered numerous mills, gave it both military importance (with a tower and
+      drawbridge) and economic relevance. A symbol of Bologna’s dual medieval identity: a
+      fortified city and a productive center tied to its waterways; it now stands as an architectural
+      and cultural testimony to the city’s urban development. I chose to enrich its record because it
+      represents a key element of Bologna’s historical and cultural identity: updating its entry
+      allows for a more complete representation of the city’s past and strengthens its visibility
+      within heritage knowledge graphs.
+    </p>
 
-<h1>Porta Castiglione, Bologna</h1>
-
-<p>
-Porta Castiglione, also known as the Gate of the Canals, was built in the second half of the
-13th century as part of Bologna’s third and final circle of walls. Its proximity to the Canale di
-Savena, which powered numerous mills, gave it both military importance (with a tower and
-drawbridge) and economic relevance. A symbol of Bologna’s dual medieval identity: a
-fortified city and a productive center tied to its waterways; it now stands as an architectural
-and cultural testimony to the city’s urban development. I chose to enrich its record because it
-represents a key element of Bologna’s historical and cultural identity: updating its entry
-allows for a more complete representation of the city’s past and strengthens its visibility
-within heritage knowledge graphs.
-</p>
     <div class="img-container">
       <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/PC0.png">
       <p><i>Figure 1: Porta Castiglione, Bologna</i></p>
     </div>
-   <h2>General Information</h2>
+
+    <h2>General Information</h2>
     <table>
       <tr><th>Identifier</th><td>0800241613</td></tr>
       <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
@@ -111,33 +93,32 @@ within heritage knowledge graphs.
       <tr><th>Construction</th><td>13th century</td></tr>
     </table>
 
-<h2>1st Step: SPARQL queries to find missing information</h2>
+    <h2>1st Step: SPARQL queries to find missing information</h2>
+    <h3>DESCRIBE query</h3>
+    <p>
+      The first step was using a DESCRIBE query to see the properties and objects belonging
+      to Porta Castiglione. I found it useful to see if it is already well described or not, and to
+      see which properties may be missing.
+    </p>
 
-<h3>DESCRIBE query</h3>
-<p>
-The first step was using a DESCRIBE query to see the properties and objects belonging
-to Porta Castiglione. I found it useful to see if it is already well described or not, and to
-see which properties may be missing.
-</p>
-
-<pre>
+    <pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 DESCRIBE
 &lt;https://w3id.org/arco/resource/ArchitecturalOrLandscapeHeritage/0800241613&gt;
-Result: <a href="https://tinyurl.com/2r9xtap6">https://tinyurl.com/2r9xtap6</a>
-</pre>
 
-<p>
-It appears that Porta Castiglione is already well-described in the ArCo ontology, but we
-could definitely enrich its profile with some interesting additional information, such as the
-ancient name it was known by and the ring of walls it belongs to.
-</p>
+Result: https://tinyurl.com/2r9xtap6
+    </pre>
 
-<h3>SELECT query</h3>
+    <p>
+      It appears that Porta Castiglione is already well-described in the ArCo ontology, but we
+      could definitely enrich its profile with some interesting additional information, such as the
+      ancient name it was known by and the ring of walls it belongs to.
+    </p>
 
-<pre>
+    <h3>SELECT query</h3>
+    <pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 SELECT ?ancientName ?wallRing
 WHERE {
@@ -151,187 +132,120 @@ WHERE {
  arco:isPartOfWallRing ?wallRing. }
 }
 LIMIT 10
-Result: <a href="https://tinyurl.com/2f9f9m8c">https://tinyurl.com/2f9f9m8c</a>
-</pre>
 
-<p>
-It looks like these two pieces of information are not present in the ArCo ontology.
-</p>
+Result: https://tinyurl.com/2f9f9m8c
+    </pre>
 
-<h2>2nd Step: How LLMs can enhance the ArCo knowledge graph</h2>
+    <p>
+      It looks like these two pieces of information are not present in the ArCo ontology.
+    </p>
 
-<p>
-I used three different LLMs, ChatGPT, DeepSeek, and Gemini, to help me find the missing
-information. I asked each model the same question and then evaluated and compared their
-answers.
-</p>
+    <h2>2nd Step: How LLMs can enhance the ArCo knowledge graph</h2>
+    <p>
+      I used three different LLMs, ChatGPT, DeepSeek, and Gemini, to help me find the missing
+      information. I asked each model the same question and then evaluated and compared their
+      answers.
+    </p>
 
-<h3>Zero-shot prompt</h3>
-<p>
-“Tell me the ancient name Porta Castiglione used to be known as and the ring of walls it
-belongs to”
-</p>
-<h4>ChatGPT’s answer:</h4>
-<div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/main/Images/porta%20castiglione%201.png" alt="Porta Castiglione">
-</div>
- <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%202.png" alt="Porta Castiglione">
-</div> 
-<p>
-ChatGPT provided accurate answers, though they lacked in-depth detail. The model did,
-however, cite its sources and include relevant images, which helped to support the
-information provided.
-</p>
+    <h3>Zero-shot prompt</h3>
+    <p>
+      “Tell me the ancient name Porta Castiglione used to be known as and the ring of walls it
+      belongs to”
+    </p>
 
-<h4>GEMINI’s answer:</h4>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%203.png">
-</div> 
-<p>
-GEMINI’s answer was the shortest one. Although the model provided correct answers, they
-tended to be brief and not very detailed. This can indeed be a positive aspect when someone
-is trying to retrieve a specific piece of information and needs a concise answer, but it can also
-be a drawback if more context or explanation is needed. It didn’t mention its sources.
-</p>
-
-<h4>Deep Seek’s answer:</h4>
+    <h4>ChatGPT’s answer:</h4>
     <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%204.png">
-</div>
-     <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%205.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%206.png">
-</div>
-  </div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%207.png">
-</div>
-<p>
-Deep Seek’s answer was definitely the longest and most accurate. Not only did it provide the
-correct answers, but it also delved deeper into the content, adding additional interesting
-details and a useful final summary for memorization. However, it didn’t mention its sources.
-</p>
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/main/Images/porta%20castiglione%201.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%202.png">
+    </div>
+    <p>
+      ChatGPT provided accurate answers, though they lacked in-depth detail. The model did,
+      however, cite its sources and include relevant images, which helped to support the
+      information provided.
+    </p>
 
-<p>
-Sources:<br>
-- <a href="https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-dibologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001">bibliotecasalaborsa.it</a><br>
-- <a href="https://www.bolognawelcome.com/it/blog/le-porte-dibologna">bolognawelcome.com</a><br>
-- <a href="https://www.originebologna.com/strade/strada-castiglione/portacastiglione/">originebologna.com</a>
-</p>
-
-<h3>Few-shots chain-of-thought prompt</h3>
-<p>
-I then used a CONSTRUCT query to add this information to the ArCo ontology. I asked
-ChatGPT and Deep Seek to help me create a CONSTRUCT query through a few-shots
-chain-of-thought prompt.
-</p>
-
-<p>
-“Hi, I need to enrich the entity 0800241636 (Porta Castiglione in Bologna) in the ArCo
-knowledge graph with some new triplets. I noticed that in the page the following
-information is missing:<br>
-- The ancient name Porta Castiglione used to be known as (answer: Porta dei Canali);<br>
-- The ring of walls it belongs to (answer: the third one).<br>
-Can you create a construct query for ArCo with all this information, following these two
-examples: ... Let’s think step by step.”
-</p>
-
-<p>
-ChatGPT’s answer: 
-  </p>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%208.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%209.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2010.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2011.png">
-</div>
-  <p>
-  Solution: <a href="https://tinyurl.com/3za3nwsd">https://tinyurl.com/3za3nwsd</a>
-</p>
-
-<p>
-Deep Seek’s answer: 
-  </p>
-  <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2012.png">
-</div>
-  <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2013.png">
-</div>
+    <h4>GEMINI’s answer:</h4>
     <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2014.png">
-</div>
-      <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2015.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2016.png">
-</div>
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%203.png">
+    </div>
+    <p>
+      GEMINI’s answer was the shortest one. Although the model provided correct answers, they
+      tended to be brief and not very detailed. This can indeed be a positive aspect when someone
+      is trying to retrieve a specific piece of information and needs a concise answer, but it can also
+      be a drawback if more context or explanation is needed. It didn’t mention its sources.
+    </p>
+
+    <h4>Deep Seek’s answer:</h4>
     <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2017.png">
-</div>
-  <p>
-  Solution: <a href="https://tinyurl.com/mw7k7r3y">https://tinyurl.com/mw7k7r3y</a>
-</p>
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%204.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%205.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%206.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%207.png">
+    </div>
+    <p>
+      Deep Seek’s answer was definitely the longest and most accurate. Not only did it provide the
+      correct answers, but it also delved deeper into the content, adding additional interesting
+      details and a useful final summary for memorization. However, it didn’t mention its sources.
+    </p>
 
-<h3>Zero-shots chain-of-thought prompt</h3>
-<p>
-Later, I decided to add one more information, that was missing in the ArCo ontology, that is
-the Bolognese name of Porta Castiglione: Pôrta Castión (source:
-<a href="https://www.bulgnais.com/manuale/lessico-fraseologia.html">https://www.bulgnais.com/manuale/lessico-fraseologia.html</a>). Therefore, I asked this with a
-zero-shots chain of thought.
-</p>
+    <p>
+      Sources:<br>
+      - <a href="https://www.bibliotecasalaborsa.it/bolognaonline/i-cartigli-di-bologna-edifici-storici-giardini-e-canali/edifici-storici/porta-castiglione-b58001">bibliotecasalaborsa.it</a><br>
+      - <a href="https://www.bolognawelcome.com/it/blog/le-porte-di-bologna">bolognawelcome.com</a><br>
+      - <a href="https://www.originebologna.com/strade/strada-castiglione/porta-castiglione/">originebologna.com</a>
+    </p>
 
-<p>
-“Hi, can you help me enrich the ArCo entity of Porta Castiglione in Bologna (0800241636)
-using the CONSTRUCT function of SPARQL? I want to add that the Bolognese name is
-Pôrta Castión. Let's think step-by-step.”
-</p>
+    <h3>Few-shots chain-of-thought prompt</h3>
+    <p>
+      I then used a CONSTRUCT query to add this information to the ArCo ontology. I asked
+      ChatGPT and Deep Seek to help me create a CONSTRUCT query through a few-shots
+      chain-of-thought prompt.
+    </p>
 
-<p>
-ChatGPT’s answer: 
-  </p>
-  <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2018.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2019.png">
-</div>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2020.png">
-</div>
-  <p>
-  Solution: <a href="https://tinyurl.com/32srvphf">https://tinyurl.com/32srvphf</a>
-</p>
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%208.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%209.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2010.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2011.png">
+    </div>
+    <p>Solution: <a href="https://tinyurl.com/3za3nwsd">https://tinyurl.com/3za3nwsd</a></p>
 
-<p>
-Deep Seek’s answer: 
-  </p>
-   <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2021.png">
-</div>
-  <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2022.png">
-</div>
-  <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2023.png">
-</div>
-  <p>
-  Solution: <a href="https://tinyurl.com/aweab628">https://tinyurl.com/aweab628</a>
-</p>
-<h2>Conclusion</h2>
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2012.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2013.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2014.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2015.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2016.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2017.png">
+    </div>
+    <p>Solution: <a href="https://tinyurl.com/mw7k7r3y">https://tinyurl.com/mw7k7r3y</a></p>
+
+    <h3>Zero-shots chain-of-thought prompt</h3>
+    <p>
+      Later, I decided to add one more information, that was missing in the ArCo ontology, that is
+      the Bolognese name of Porta Castiglione: Pôrta Castión (source:
+      <a href="https://www.bulgnais.com/manuale/lessico-fraseologia.html">bulgnais.com</a>).
+      Therefore, I asked this with a zero-shots chain of thought.
+    </p>
+
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2018.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2019.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2020.png">
+    </div>
+    <p>Solution: <a href="https://tinyurl.com/32srvphf">https://tinyurl.com/32srvphf</a></p>
+
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2021.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2022.png">
+      <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/porta%20castiglione%2023.png">
+    </div>
+    <p>Solution: <a href="https://tinyurl.com/aweab628">https://tinyurl.com/aweab628</a></p>
+
+    <h2>Conclusion</h2>
     <p>
       Even though Porta Castiglione was already present in the ArCo ontology, by experimenting with SPARQL queries and the support of different LLMs I was able to enrich its description with valuable missing details, such as its ancient name Porta dei Canali, the fact that it belongs to the third ring of walls, and even its Bolognese name Pôrta Castión. This process allowed me not only to verify and compare the outputs of multiple models, but also to integrate them with external sources in order to build a more complete and reliable knowledge graph entry. At the beginning, approaching LLMs for SPARQL query generation was not entirely straightforward, but gradually it became an engaging way to learn how semantic enrichment can enhance the representation of cultural heritage. Overall, this work turned out to be both challenging and rewarding, since it deepened my understanding of Porta Castiglione as a symbol of Bologna’s medieval and economic identity while also highlighting how AI can contribute to preserving and disseminating local history.  
-    To learn more about the challenges the group and I faced during this project, visit the <a href="https://brigittarigon.github.io/Progetto_KE4H_/challenges.html">Faced Challenges</a> section of this website.
+      To learn more about the challenges the group and I faced during this project, visit the <a href="https://brigittarigon.github.io/Progetto_KE4H_/challenges.html">Faced Challenges</a> section of this website.
     </p>
   </section>
 </body>
