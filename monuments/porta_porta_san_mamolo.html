@@ -324,30 +324,41 @@ DESCRIBE &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800249999&
       <li><strong>Gemini</strong>: provided structured queries with canonical ArCo URIs and readable RDF triples using zero-shot prompting.</li>
     </ul>
 
-    <h2>Conclusion</h2>
-    <p><strong>Technical Summary:</strong>
-Semantic Enrichment of Porta San Mamolo Using ArCo Ontology
+<h3>CONCLUSION</h3>
+<p>
+Technical Summary: Semantic Enrichment of Porta San Mamolo Using ArCo Ontology<br>
 This work presents the semantic modeling and RDF enrichment of historical data for Porta San Mamolo, a former city gate of Bologna, within the ArCo ontology framework.
-Data Acquisition and Validation
-Historical and architectural metadata were collected, including: construction in the 12th century, Bolognese dialect name “Porta ed San Mamel”, addition of a drawbridge in 1334, demolition in 1903, and building material brick.
+</p>
+<p>
+<strong>Data Acquisition and Validation</strong><br>
+Historical and architectural metadata were collected, including: construction in the 12th century, Bolognese dialect name “Porta ed San Mamel”, addition of a drawbridge in 1334, demolition in 1903, and building material brick.<br>
 SPARQL SELECT queries confirmed that Porta San Mamolo was absent from the ArCo knowledge graph (KG), validating the need for structured integration.
-RDF Modeling via SPARQL CONSTRUCT
-CONSTRUCT queries were generated to encode key properties:
-Construction period → arco-cons:hasConstructionDevelopment
-Material → arco-den:hasMaterial
-Related event (drawbridge) → arco-event:hasRelatedEvent
-Descriptive information (dialect name) → arco-core:describes
-Demolition date → arco-core:hasNote
+</p>
+<p>
+<strong>RDF Modeling via SPARQL CONSTRUCT</strong><br>
+CONSTRUCT queries were generated to encode key properties:<br>
+Construction period → arco-cons:hasConstructionDevelopment<br>
+Material → arco-den:hasMaterial<br>
+Related event (drawbridge) → arco-event:hasRelatedEvent<br>
+Descriptive information (dialect name) → arco-core:describes<br>
+Demolition date → arco-core:hasNote<br>
 Queries were expressed with canonical ArCo URIs and appropriate language tags (@en, @bo), producing RDF triples compatible with Virtuoso and other triple stores.
-SPARQL Verification Queries
-ASK queries were used to validate the presence of demolition information, returning false.
+</p>
+<p>
+<strong>SPARQL Verification Queries</strong><br>
+ASK queries were used to validate the presence of demolition information, returning false.<br>
 DESCRIBE queries confirmed the absence of Porta San Mamolo in the KG, demonstrating the need for insertion.
-LLM-Assisted Query Generation
-ChatGPT produced CONSTRUCT queries via one-shot prompting.
+</p>
+<p>
+<strong>LLM-Assisted Query Generation</strong><br>
+ChatGPT produced CONSTRUCT queries via one-shot prompting.<br>
 Gemini generated structured RDF triples using zero-shot prompting, using precise ArCo ontology terms.
-Outcome 
+</p>
+<p>
+<strong>Outcome</strong><br>
 Porta San Mamolo’s historical, architectural, and descriptive data have been formally represented in RDF, ready for ingestion into the ArCo KG.
-    <p>
+</p>
+
       To learn more about the challenges the group and I faced during this project, visit the 
       <a href="https://brigittarigon.github.io/Progetto_KE4H_/challenges.html">Faced Challenges</a> 
       section of this website.
