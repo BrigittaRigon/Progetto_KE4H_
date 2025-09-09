@@ -114,6 +114,55 @@ WHERE {
 ORDER BY ?s
 LIMIT 200
     </pre>
+     <h2>SELECT OPTIONAL Query</h2>
+    <p>SELECT query, using the OPTIONAL function to see the properties worth describing that can be missing from the knowledge graph</p>
+    <p><strong>Example taken from Porta San Donato:</strong></p>
+    <pre>
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#>
+PREFIX arco:&lt;https://w3id.org/arco/ontology/arco/>
+PREFIX a-cd:&lt;https://w3id.org/arco/ontology/context-description/>
+PREFIX a-dd:&lt;https://w3id.org/arco/ontology/denotative-description/>
+PREFIX a-loc:&lt;https://w3id.org/arco/ontology/location/>
+PREFIX cis:&lt;http://dati.beniculturali.it/cis/>
+PREFIX clv:&lt;https://w3id.org/italia/onto/CLV/>
+
+SELECT DISTINCT ?culturalProperty ?title ?inception_year ?material ?style ?author ?inscription ?depiction ?location
+WHERE {
+  VALUES ?culturalProperty {  }
+
+  # label or title of Porta Zamboni
+  OPTIONAL { ?culturalProperty rdfs:label ?title . }
+
+  # inception / dating
+  OPTIONAL { 
+    ?culturalProperty a-cd:hasDating ?dating .
+    ?dating a-cd:hasDatingEvent ?event .
+    ?event a-cd:hasTimeInterval ?timeInterval .
+    ?timeInterval a-cd:hasYear ?inception_year .
+  }
+
+  # material
+  OPTIONAL { ?culturalProperty a-dd:hasMaterial ?matNode .
+             ?matNode rdfs:label ?material . }
+
+  # architectural style
+  OPTIONAL { ?culturalProperty a-cd:hasCulturalPropertyType ?styleType .
+             ?styleType rdfs:label ?style . }
+
+  # author / architect
+  OPTIONAL { ?culturalProperty a-cd:hasAuthor ?author . }
+
+  # inscription
+  OPTIONAL { ?culturalProperty a-cd:hasInscription ?inscription . }
+
+  # depiction (images)
+  OPTIONAL { ?culturalProperty a-cd:depiction ?depiction . }
+
+  # current location
+  OPTIONAL { ?culturalProperty a-loc:hasCulturalPropertyAddress ?addr .
+             ?addr clv:hasMunicipality/rdfs:label ?location . }
+}</pre>
 
     <h2>CONSTRUCT Query</h2>
     <p>
