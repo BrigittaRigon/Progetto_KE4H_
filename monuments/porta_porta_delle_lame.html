@@ -243,28 +243,28 @@ Gemini provided a detailed and organized step by step analysis:
       Gemini's CONSTRUCT query
     </p>
     <pre>
-PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/construction-description&gt;
-PREFIX arco-ce: &lt;https://w3id.org/arco/ontology/cultural-event&gt;
-PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core&gt;
-PREFIX arco-dd: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
-PREFIX arco: &lt;https://w3id.org/arco/ontology/arco&gt;
+PREFIX arco-cd: <https://w3id.org/arco/ontology/construction-description/>
+PREFIX arco-ce: <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX arco-core: <https://w3id.org/arco/ontology/core/>
+PREFIX arco-dd: <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 
 CONSTRUCT {
-        &lt;https://dati.beniculturali.it/resource/CulturalProperty/0800241649&gt;
+    <https://dati.beniculturali.it/resource/CulturalProperty/0800241649>
         arco-cd:hasPreviousStructureOrElement "cassero medievale" ;
         arco-cd:hasArchitecturalOrder "baroque" ;
         arco-dd:hasMaterial "brick" ;
         arco-ce:hasRelatedEvent "battle of Porta Lame during WWII" ;
         arco-core:describes "the latin name Lame refers to swamps" ;
-        arco-core:isPartOf &lt;https://w3id.org/arco/resource/CityGate/BolognasCityGates&gt;
-        arco-dd:AffixedElement "two lions" .
+        arco-core:isPartOf <https://w3id.org/arco/resource/CityGate/BolognasCityGates> ;
+        arco-dd:AffixedElement "Iconclass:25F(LION)41" .
 }
 WHERE {
     FILTER (true)
 }
  </pre>
      <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/query%205%20res.png" >
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/results%20query%205.png" >
       </div>
   <p>
     CHAT-GPT: presented another query .At first it kept a useless prefix of the example .
@@ -274,50 +274,50 @@ WHERE {
       Chat gpt's CONSTRUCT query
    </p>
    <pre> 
-PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-PREFIX a-cd:  &lt;https://w3id.org/arco/ontology/construction-description&gt;
-PREFIX a-dd:  &lt;https://w3id.org/arco/ontology/denotative-description&gt;
-PREFIX a-ce:  &lt;https://w3id.org/arco/ontology/cultural-event&gt;
-PREFIX a-core:&lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX a-cd:  <https://w3id.org/arco/ontology/construction-description/>
+PREFIX a-dd:  <https://w3id.org/arco/ontology/denotative-description/>
+PREFIX a-ce:  <https://w3id.org/arco/ontology/cultural-event/>
+PREFIX a-core:<https://w3id.org/arco/ontology/core/>
 
 CONSTRUCT {
-  &lt;https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649&gt;
-    a-cd:hasPreviousStructureOrElements &lt;https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep&gt;
-    a-cd:hasArchitecturalOrder          &lt;https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque&gt;
-    a-dd:hasMaterial                    &lt;https://dati.beniculturali.it/resource/Material/0800241649-brick&gt;
-    a-ce:hasRelatedEvent                &lt;https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii&gt;
-    a-core:isPartOf                     &lt;https://dati.beniculturali.it/resource/Collection/bologna-city-gates&gt;
-    a-dd:hasAffixedElement              &lt;https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions&gt .
+  <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649>
+    a-cd:hasPreviousStructureOrElements <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep> ;
+    a-cd:hasArchitecturalOrder          <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque> ;
+    a-dd:hasMaterial                    <https://dati.beniculturali.it/resource/Material/0800241649-brick> ;
+    a-ce:hasRelatedEvent                <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii> ;
+    a-core:isPartOf                     <https://dati.beniculturali.it/resource/Collection/bologna-city-gates> ;
+    a-dd:hasAffixedElement              <http://iconclass.org/25F42> .
 
-  &lt;https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep&gt;
+  <https://dati.beniculturali.it/resource/PreviousConstruction/0800241649-medieval-castle-keep>
     rdfs:label "medieval castle keep"@en .
 
-  &lt;https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque&gt;
+  <https://dati.beniculturali.it/resource/ArchitecturalOrder/0800241649-baroque>
     rdfs:label "Baroque"@en .
 
-  &lt;https://dati.beniculturali.it/resource/Material/0800241649-brick&gt;
+  <https://dati.beniculturali.it/resource/Material/0800241649-brick>
     rdfs:label "brick"@en .
 
-  &lt;https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii&gt;
+  <https://dati.beniculturali.it/resource/Event/0800241649-battle-of-porta-lame-wwii>
     rdfs:label "Battle of Porta Lame (World War II)"@en .
 
-  &lt;https://dati.beniculturali.it/resource/Collection/bologna-city-gates&gt;
+  <https://dati.beniculturali.it/resource/Collection/bologna-city-gates>
     rdfs:label "Bologna city gates"@en .
 
-  &lt;https://dati.beniculturali.it/resource/AffixedElement/0800241649-two-lions&gt;
-    a a-dd:AffixedElement ;
-    rdfs:label "two lions"@en .
+  <http://iconclass.org/25F42>
+    rdfs:label "lion"@en .
 
-  &lt;https://dati.beniculturali.it/resource/Description/0800241649-etymology-lame&gt;
-    a-core:describes &lt;https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649&gt;
+  <https://dati.beniculturali.it/resource/Description/0800241649-etymology-lame>
+    a-core:describes <https://dati.beniculturali.it/resource/ArchitecturalOrLandscapeHeritage/0800241649> ;
     rdfs:label "The Latin name 'Lame' refers to swamps."@en .
 }
 WHERE {
   FILTER (true)
 }
+
   </pre> 
      <div class="img-container">
-    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/query6%20res.png" >
+    <img src="https://raw.githubusercontent.com/BrigittaRigon/Progetto_KE4H_/refs/heads/main/Images/results%20query%206.png" >
       </div>
   <h2>Discussion</h2>
     <p>
